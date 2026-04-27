@@ -1,0 +1,334 @@
+/* CNC코리아 ERP 자동화 — Side Panel */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --primary: #1e40af;
+  --primary-light: #3b82f6;
+  --primary-bg: #eff6ff;
+  --success: #16a34a;
+  --success-bg: #f0fdf4;
+  --danger: #dc2626;
+  --danger-bg: #fef2f2;
+  --warning: #d97706;
+  --warning-bg: #fffbeb;
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-300: #d1d5db;
+  --gray-500: #6b7280;
+  --gray-700: #374151;
+  --gray-900: #111827;
+  --radius: 8px;
+  --shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+body {
+  width: 100%; min-width: 360px;
+  font-family: -apple-system, 'Malgun Gothic', sans-serif;
+  background: var(--gray-50);
+  color: var(--gray-900);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* ── Header ── */
+.header {
+  background: var(--primary);
+  color: #fff;
+  padding: 14px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header h1 { font-size: 15px; font-weight: 700; }
+.header .subtitle { font-size: 11px; color: #93c5fd; margin-top: 2px; }
+.header .version { font-size: 9px; color: #93c5fd; }
+
+/* ── Connection Status ── */
+.connection-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: var(--gray-100);
+  border-bottom: 1px solid var(--gray-200);
+  font-size: 11px;
+}
+.status-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--danger);
+}
+.status-dot.connected { background: var(--success); }
+
+/* ── Navigation Tabs ── */
+.nav-tabs {
+  display: flex;
+  background: #fff;
+  border-bottom: 2px solid var(--gray-200);
+  overflow-x: auto;
+}
+.nav-tab {
+  flex: 0 0 auto;
+  padding: 10px 14px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--gray-500);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  white-space: nowrap;
+  transition: all 0.15s;
+}
+.nav-tab:hover { color: var(--primary); }
+.nav-tab.active {
+  color: var(--primary);
+  font-weight: 700;
+  border-bottom-color: var(--primary);
+}
+
+/* ── Sections ── */
+.section {
+  background: #fff;
+  margin: 8px;
+  border-radius: var(--radius);
+  padding: 14px;
+  box-shadow: var(--shadow);
+}
+.section-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--gray-100);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.section-title .badge {
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 10px;
+  background: var(--primary-bg);
+  color: var(--primary);
+  font-weight: 500;
+}
+
+/* ── Tab Content ── */
+.tab-page { display: none; }
+.tab-page.active { display: block; }
+
+/* ── Form Elements ── */
+.form-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  gap: 8px;
+}
+.form-row label {
+  font-size: 11px;
+  color: var(--gray-500);
+  min-width: 80px;
+  flex-shrink: 0;
+}
+.form-row input,
+.form-row select,
+.form-row textarea {
+  flex: 1;
+  padding: 7px 10px;
+  border: 1px solid var(--gray-200);
+  border-radius: 6px;
+  font-size: 12px;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.form-row input:focus,
+.form-row select:focus,
+.form-row textarea:focus {
+  border-color: var(--primary-light);
+  box-shadow: 0 0 0 3px rgba(59,130,246,0.1);
+}
+.form-row textarea {
+  height: 80px;
+  resize: vertical;
+  font-family: inherit;
+}
+
+/* ── Buttons ── */
+.btn {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.btn-sm { padding: 5px 10px; font-size: 11px; }
+.btn-primary { background: var(--primary); color: #fff; }
+.btn-primary:hover:not(:disabled) { background: #1e3a8a; }
+.btn-success { background: var(--success); color: #fff; }
+.btn-success:hover:not(:disabled) { background: #15803d; }
+.btn-danger { background: var(--danger); color: #fff; }
+.btn-danger:hover:not(:disabled) { background: #b91c1c; }
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--gray-200);
+  color: var(--gray-700);
+}
+.btn-outline:hover:not(:disabled) { background: var(--gray-100); }
+.btn-group { display: flex; gap: 6px; margin-top: 10px; }
+
+/* ── Workflow Cards ── */
+.workflow-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.workflow-card {
+  padding: 10px;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.workflow-card:hover {
+  border-color: var(--primary-light);
+  background: var(--primary-bg);
+}
+.workflow-card.active {
+  border-color: var(--primary);
+  background: var(--primary-bg);
+}
+.workflow-card .wf-icon { font-size: 20px; margin-bottom: 4px; }
+.workflow-card .wf-title { font-size: 11px; font-weight: 600; color: var(--gray-900); }
+.workflow-card .wf-desc { font-size: 10px; color: var(--gray-500); margin-top: 2px; }
+
+/* ── File Upload ── */
+.file-drop {
+  border: 2px dashed var(--gray-300);
+  border-radius: var(--radius);
+  padding: 24px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.file-drop:hover,
+.file-drop.dragover {
+  border-color: var(--primary-light);
+  background: var(--primary-bg);
+}
+.file-drop .icon { font-size: 28px; margin-bottom: 6px; }
+.file-drop .label { font-size: 12px; color: var(--gray-500); }
+.file-drop input[type="file"] { display: none; }
+
+/* ── Preview Table ── */
+.preview-table-wrap {
+  max-height: 250px;
+  overflow: auto;
+  margin-top: 10px;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius);
+}
+.preview-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+}
+.preview-table th {
+  background: var(--gray-100);
+  padding: 6px 8px;
+  text-align: left;
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+.preview-table td {
+  padding: 5px 8px;
+  border-top: 1px solid var(--gray-100);
+}
+.preview-table tr:hover td { background: var(--gray-50); }
+
+/* ── Progress ── */
+.progress-bar {
+  width: 100%;
+  height: 6px;
+  background: var(--gray-200);
+  border-radius: 3px;
+  margin-top: 8px;
+  overflow: hidden;
+  display: none;
+}
+.progress-bar.active { display: block; }
+.progress-bar .fill {
+  height: 100%;
+  background: var(--primary);
+  border-radius: 3px;
+  transition: width 0.3s;
+  width: 0%;
+}
+
+/* ── Status Log ── */
+.status-log {
+  margin-top: 8px;
+  padding: 8px;
+  background: var(--gray-50);
+  border-radius: 6px;
+  font-size: 11px;
+  color: var(--gray-500);
+  max-height: 150px;
+  overflow-y: auto;
+}
+.status-log .log-entry { margin-bottom: 3px; }
+.status-log .success { color: var(--success); }
+.status-log .fail { color: var(--danger); }
+.status-log .info { color: var(--primary); }
+
+/* ── Stats Cards (Dashboard) ── */
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.stat-card {
+  background: #fff;
+  padding: 12px;
+  border-radius: var(--radius);
+  border: 1px solid var(--gray-200);
+}
+.stat-card .stat-label { font-size: 10px; color: var(--gray-500); margin-bottom: 4px; }
+.stat-card .stat-value { font-size: 18px; font-weight: 700; color: var(--gray-900); }
+.stat-card .stat-change { font-size: 10px; margin-top: 2px; }
+.stat-card .stat-change.up { color: var(--success); }
+.stat-card .stat-change.down { color: var(--danger); }
+
+/* ── Settings ── */
+.settings-group { margin-bottom: 12px; }
+.settings-group h3 { font-size: 12px; font-weight: 600; margin-bottom: 8px; }
+
+/* ── Toast ── */
+.toast {
+  position: fixed;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  border-radius: var(--radius);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 500;
+  z-index: 9999;
+  animation: toast-in 0.3s ease;
+}
+.toast.success { background: var(--success); }
+.toast.error { background: var(--danger); }
+.toast.info { background: var(--primary); }
+@keyframes toast-in {
+  from { opacity: 0; transform: translateX(-50%) translateY(10px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}

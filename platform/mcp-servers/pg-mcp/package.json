@@ -1,0 +1,11 @@
+{
+  "name": "pg-mcp",
+  "version": "1.0.0",
+  "description": "PG사 연동 MCP 서버 (INICIS, 네이버페이)",
+  "type": "module",
+  "main": "index.js",
+  "bin": { "pg-mcp": "index.js" },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  }
+}

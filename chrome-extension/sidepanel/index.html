@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+  <div>
+    <h1>CNC코리아 ERP 자동화</h1>
+    <div class="subtitle">이카운트 업무 자동화 도구</div>
+  </div>
+  <div class="version">v1.0.0</div>
+</div>
+
+<!-- Connection Status -->
+<div class="connection-bar">
+  <div class="status-dot" id="statusDot"></div>
+  <span id="connectionText">이카운트 미연결</span>
+  <button class="btn btn-sm btn-outline" id="btnConnect" style="margin-left:auto">연결</button>
+</div>
+
+<!-- Navigation -->
+<div class="nav-tabs">
+  <div class="nav-tab active" data-tab="workflows">업무자동화</div>
+  <div class="nav-tab" data-tab="stats">통계·분석</div>
+  <div class="nav-tab" data-tab="reports">보고서</div>
+  <div class="nav-tab" data-tab="settings">설정</div>
+</div>
+
+<!-- ═══════════ TAB: 업무자동화 ═══════════ -->
+<div class="tab-page active" id="tab-workflows">
+
+  <!-- 워크플로우 선택 -->
+  <div class="section">
+    <div class="section-title">워크플로우 선택</div>
+
+    <!-- 카테고리 필터 -->
+    <div style="display:flex;gap:4px;margin-bottom:10px;flex-wrap:wrap;">
+      <button class="btn btn-sm btn-primary wf-filter active" data-cat="all">전체</button>
+      <button class="btn btn-sm btn-outline wf-filter" data-cat="order">주문·물류</button>
+      <button class="btn btn-sm btn-outline wf-filter" data-cat="sales">견적·영업</button>
+      <button class="btn btn-sm btn-outline wf-filter" data-cat="payment">결제·세금</button>
+      <button class="btn btn-sm btn-outline wf-filter" data-cat="purchase">매입</button>
+      <button class="btn btn-sm btn-outline wf-filter" data-cat="finance">재무·채권</button>
+      <button class="btn btn-sm btn-outline wf-filter" data-cat="hr">인사·총무</button>
+    </div>
+
+    <div class="workflow-grid" id="workflowGrid">
+      <!-- 1. 주문 및 물류 -->
+      <div class="workflow-card" data-wf="kakao-order" data-cat="order">
+        <div class="wf-icon">💬</div>
+        <div class="wf-title">카톡 주문 수집</div>
+        <div class="wf-desc">카톡 주문 → LLM 파싱 → 판매입력</div>
+      </div>
+      <div class="workflow-card" data-wf="excel-upload" data-cat="order">
+        <div class="wf-icon">📊</div>
+        <div class="wf-title">엑셀 판매입력</div>
+        <div class="wf-desc">엑셀 → 이카운트 자동 등록</div>
+      </div>
+      <div class="workflow-card" data-wf="logistics-format" data-cat="order">
+        <div class="wf-icon">📦</div>
+        <div class="wf-title">물류센터 양식변환</div>
+        <div class="wf-desc">이카운트 → 물류센터 포맷 → 메일</div>
+      </div>
+
+      <!-- 2. 견적·영업 -->
+      <div class="workflow-card" data-wf="price-recommend" data-cat="sales">
+        <div class="wf-icon">💰</div>
+        <div class="wf-title">거래처별 단가 추천</div>
+        <div class="wf-desc">단가 패턴 학습 → 추천</div>
+      </div>
+      <div class="workflow-card" data-wf="auto-quote" data-cat="sales">
+        <div class="wf-icon">📝</div>
+        <div class="wf-title">자동 견적서</div>
+        <div class="wf-desc">견적서 제작 → 이메일 전송</div>
+      </div>
+      <div class="workflow-card" data-wf="quote-followup" data-cat="sales">
+        <div class="wf-icon">🔔</div>
+        <div class="wf-title">미전환 견적 알림</div>
+        <div class="wf-desc">7일/14일 무응답 자동 알림</div>
+      </div>
+      <div class="workflow-card" data-wf="pre-quote" data-cat="sales">
+        <div class="wf-icon">📐</div>
+        <div class="wf-title">가견적 (박스 추천)</div>
+        <div class="wf-desc">치수 입력 → 최적 박스 + 견적</div>
+      </div>
+
+      <!-- 3. 결제·세금 -->
+      <div class="workflow-card" data-wf="tax-invoice-match" data-cat="payment">
+        <div class="wf-icon">🧾</div>
+        <div class="wf-title">세금계산서 매칭</div>
+        <div class="wf-desc">PG결제 ↔ 이카운트 대사</div>
+      </div>
+
+      <!-- 4. 매입 -->
+      <div class="workflow-card" data-wf="invoice-ocr" data-cat="purchase">
+        <div class="wf-icon">🔍</div>
+        <div class="wf-title">인보이스 OCR</div>
+        <div class="wf-desc">PDF → OCR+LLM → 구매입력</div>
+      </div>
+
+      <!-- 5. 재무·채권 -->
+      <div class="workflow-card" data-wf="ar-refresh" data-cat="finance">
+        <div class="wf-icon">📋</div>
+        <div class="wf-title">채권현황 갱신</div>
+        <div class="wf-desc">매일 자동 채권현황 갱신</div>
+      </div>
+      <div class="workflow-card" data-wf="pl-report" data-cat="finance">
+        <div class="wf-icon">📈</div>
+        <div class="wf-title">매입·매출 리포트</div>
+        <div class="wf-desc">월별 손익 자동 산출</div>
+      </div>
+
+      <!-- 6. 인사·총무 -->
+      <div class="workflow-card" data-wf="payroll" data-cat="hr">
+        <div class="wf-icon">💼</div>
+        <div class="wf-title">급여 자동화</div>
+        <div class="wf-desc">급여대장 → 이체서 + 명세서 + 메일</div>
+      </div>
+      <div class="workflow-card" data-wf="receipt-ocr" data-cat="hr">
+        <div class="wf-icon">🧾</div>
+        <div class="wf-title">영수증 OCR</div>
+        <div class="wf-desc">법인카드 영수증 → 항목 분류</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 워크플로우 실행 영역 -->
+  <div class="section" id="workflowPanel" style="display:none">
+    <div class="section-title">
+      <span id="wfPanelTitle">워크플로우</span>
+      <span class="badge" id="wfPanelBadge"></span>
+    </div>
+
+    <!-- 파일 업로드 -->
+    <div class="file-drop" id="fileDrop">
+      <div class="icon">📁</div>
+      <div class="label">파일을 드래그하거나 클릭하여 업로드<br><small>Excel (.xlsx, .xls) / PDF / 이미지</small></div>
+      <input type="file" id="fileInput" accept=".xlsx,.xls,.csv,.pdf,.png,.jpg,.jpeg">
+    </div>
+
+    <!-- 텍스트 입력 (카톡 주문 등) -->
+    <div id="textInputArea" style="display:none;margin-top:10px;">
+      <div class="form-row">
+        <label>텍스트 입력</label>
+        <textarea id="wfTextInput" placeholder="카톡 주문 내용을 붙여넣기..."></textarea>
+      </div>
+    </div>
+
+    <!-- 추가 설정 (워크플로우별) -->
+    <div id="wfExtraFields" style="margin-top:10px;"></div>
+
+    <!-- 미리보기 테이블 -->
+    <div class="preview-table-wrap" id="previewWrap" style="display:none">
+      <table class="preview-table" id="previewTable">
+        <thead id="previewHead"></thead>
+        <tbody id="previewBody"></tbody>
+      </table>
+    </div>
+
+    <!-- 실행 -->
+    <div class="btn-group">
+      <button class="btn btn-success" id="btnExecute" style="flex:1" disabled>실행</button>
+      <button class="btn btn-danger" id="btnCancel" disabled>취소</button>
+    </div>
+    <div class="progress-bar" id="progressBar">
+      <div class="fill" id="progressFill"></div>
+    </div>
+    <div class="status-log" id="statusLog" style="display:none"></div>
+  </div>
+
+  <!-- 최근 실행 이력 -->
+  <div class="section">
+    <div class="section-title">최근 실행 이력</div>
+    <div id="historyList" style="font-size:11px;color:var(--gray-500);">실행 이력이 없습니다</div>
+  </div>
+</div>
+
+<!-- ═══════════ TAB: 통계·분석 ═══════════ -->
+<div class="tab-page" id="tab-stats">
+  <div class="section">
+    <div class="section-title">거래처 분석</div>
+    <div style="display:flex;gap:4px;margin-bottom:10px;flex-wrap:wrap;">
+      <button class="btn btn-sm btn-primary stat-btn" data-stat="client-dashboard">주문이력</button>
+      <button class="btn btn-sm btn-outline stat-btn" data-stat="client-rank">매출순위</button>
+      <button class="btn btn-sm btn-outline stat-btn" data-stat="client-grade">활동성등급</button>
+      <button class="btn btn-sm btn-outline stat-btn" data-stat="client-churn">이탈예측</button>
+      <button class="btn btn-sm btn-outline stat-btn" data-stat="client-payment">결제패턴</button>
+      <button class="btn btn-sm btn-outline stat-btn" data-stat="client-ratio">신규vs기존</button>
+    </div>
+    <div id="clientStatsContent">
+      <p style="font-size:11px;color:var(--gray-500);">이카운트 연결 후 데이터를 조회합니다</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">매출·품목 분석</div>
+    <div style="display:flex;gap:4px;margin-bottom:10px;flex-wrap:wrap;">
+      <button class="btn btn-sm btn-primary stat-btn" data-stat="sales-compare">매출비교</button>
+      <button class="btn btn-sm btn-outline stat-btn" data-stat="channel-ratio">채널비중</button>
+      <button class="btn btn-sm btn-outline stat-btn" data-stat="product-rank">품목순위</button>
+      <button class="btn btn-sm btn-outline stat-btn" data-stat="category-sales">카테고리별</button>
+      <button class="btn btn-sm btn-outline stat-btn" data-stat="time-pattern">시간대패턴</button>
+      <button class="btn btn-sm btn-outline stat-btn" data-stat="target-rate">목표달성률</button>
+      <button class="btn btn-sm btn-outline stat-btn" data-stat="season">시즌분석</button>
+    </div>
+    <div id="salesStatsContent">
+      <p style="font-size:11px;color:var(--gray-500);">이카운트 연결 후 데이터를 조회합니다</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ TAB: 보고서 ═══════════ -->
+<div class="tab-page" id="tab-reports">
+  <div class="section">
+    <div class="section-title">보고서 생성</div>
+    <div class="form-row">
+      <label>보고서 유형</label>
+      <select id="reportType">
+        <option value="daily">일간 매출 보고서</option>
+        <option value="weekly-ar">주간 채권 현황</option>
+        <option value="monthly-pl">월간 매입·매출 리포트</option>
+        <option value="client-rank">거래처 매출 순위</option>
+        <option value="product-rank">품목별 매출 순위</option>
+      </select>
+    </div>
+    <div class="form-row">
+      <label>기간</label>
+      <input type="date" id="reportFrom">
+      <span style="font-size:11px;">~</span>
+      <input type="date" id="reportTo">
+    </div>
+    <div class="form-row">
+      <label>수신 메일</label>
+      <input type="email" id="reportEmail" placeholder="report@cnc-korea.com">
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" id="btnGenReport" style="flex:1">보고서 생성</button>
+      <button class="btn btn-outline" id="btnSendReport">메일 발송</button>
+    </div>
+    <div id="reportPreview" style="margin-top:10px;font-size:11px;color:var(--gray-500);"></div>
+  </div>
+</div>
+
+<!-- ═══════════ TAB: 설정 ═══════════ -->
+<div class="tab-page" id="tab-settings">
+  <div class="section">
+    <div class="section-title">이카운트 연결 설정</div>
+    <div class="form-row">
+      <label>회사코드</label>
+      <input type="text" id="setComCode" placeholder="회사코드">
+    </div>
+    <div class="form-row">
+      <label>사용자 ID</label>
+      <input type="text" id="setUserId" placeholder="사용자 ID">
+    </div>
+    <div class="form-row">
+      <label>API 인증키</label>
+      <input type="password" id="setApiKey" placeholder="API 인증키">
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" id="btnSaveSettings">저장 및 연결 테스트</button>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">AI 설정 (Claude API)</div>
+    <div class="form-row">
+      <label>API Key</label>
+      <input type="password" id="setAnthropicKey" placeholder="sk-ant-...">
+    </div>
+    <div class="form-row">
+      <label>용도</label>
+      <span style="font-size:10px;color:var(--gray-500);">카톡 주문 파싱, 인보이스 OCR, 단가 추천에 사용</span>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-outline" id="btnSaveAiKey">AI 키 저장</button>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">물류센터 템플릿</div>
+    <div id="logisticsTemplates">
+      <p style="font-size:11px;color:var(--gray-500);">물류센터 양식 템플릿을 관리합니다</p>
+    </div>
+    <button class="btn btn-sm btn-outline" id="btnAddTemplate" style="margin-top:6px;">+ 템플릿 추가</button>
+  </div>
+
+  <div class="section">
+    <div class="section-title">데이터 관리</div>
+    <div class="btn-group">
+      <button class="btn btn-sm btn-outline" id="btnExportSettings">설정 내보내기</button>
+      <button class="btn btn-sm btn-outline" id="btnImportSettings">설정 가져오기</button>
+      <button class="btn btn-sm btn-danger" id="btnClearData">데이터 초기화</button>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

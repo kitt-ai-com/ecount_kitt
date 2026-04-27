@@ -1,0 +1,11 @@
+{
+  "name": "cafe24-mcp",
+  "version": "1.0.0",
+  "description": "카페24 쇼핑몰 연동 MCP 서버",
+  "type": "module",
+  "main": "index.js",
+  "bin": { "cafe24-mcp": "index.js" },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  }
+}

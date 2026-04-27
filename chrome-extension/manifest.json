@@ -1,0 +1,42 @@
+{
+  "manifest_version": 3,
+  "name": "CNC코리아 ERP 자동화",
+  "version": "1.0.0",
+  "description": "이카운트 ERP 반복 업무 자동화 도구 — 판매입력, 매출전표, 구매입력, 급여, 채권 관리",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage",
+    "tabs",
+    "sidePanel"
+  ],
+  "host_permissions": [
+    "https://*.ecount.com/*",
+    "https://api.anthropic.com/*"
+  ],
+  "action": {
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "side_panel": {
+    "default_path": "sidepanel/index.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.ecount.com/*", "https://*.ecounterp.com/*"],
+      "js": ["content-scripts/ecount-observer.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

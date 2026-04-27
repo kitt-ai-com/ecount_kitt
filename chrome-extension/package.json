@@ -1,0 +1,20 @@
+{
+  "name": "cnc-korea-erp-extension",
+  "version": "1.0.0",
+  "description": "CNC코리아 이카운트 ERP 자동화 Chrome 확장",
+  "private": true,
+  "scripts": {
+    "build": "webpack --mode production",
+    "dev": "webpack --mode development --watch"
+  },
+  "dependencies": {
+    "xlsx": "^0.18.5",
+    "pdfjs-dist": "^4.0.379",
+    "exceljs": "^4.4.0"
+  },
+  "devDependencies": {
+    "webpack": "^5.90.0",
+    "webpack-cli": "^5.1.4",
+    "copy-webpack-plugin": "^12.0.2"
+  }
+}

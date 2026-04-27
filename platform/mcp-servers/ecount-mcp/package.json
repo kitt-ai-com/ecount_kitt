@@ -1,0 +1,11 @@
+{
+  "name": "ecount-mcp",
+  "version": "1.0.0",
+  "description": "이카운트 ERP MCP 서버",
+  "type": "module",
+  "main": "index.js",
+  "bin": { "ecount-mcp": "index.js" },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  }
+}
