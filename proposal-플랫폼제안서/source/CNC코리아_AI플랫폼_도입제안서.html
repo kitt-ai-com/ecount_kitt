@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CNC코리아 AI 업무자동화 플랫폼 도입 제안서</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;900&display=swap');
+
+  :root {
+    --primary: #1a56db;
+    --primary-dark: #1340a8;
+    --primary-light: #e8effc;
+    --accent: #f59e0b;
+    --accent-light: #fef3c7;
+    --success: #059669;
+    --success-light: #d1fae5;
+    --danger: #dc2626;
+    --dark: #111827;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-300: #d1d5db;
+    --gray-500: #6b7280;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-800: #1f2937;
+    --radius: 12px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans KR', -apple-system, sans-serif;
+    color: var(--dark);
+    background: #fff;
+    line-height: 1.7;
+    font-size: 15px;
+  }
+
+  /* ── 페이지 레이아웃 ── */
+  .page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  /* ── 표지 ── */
+  .cover {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #1a56db 0%, #0f3490 50%, #0a1f5e 100%);
+    color: white;
+    text-align: center;
+    padding: 60px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -30%;
+    width: 80%;
+    height: 200%;
+    background: radial-gradient(ellipse, rgba(255,255,255,0.05) 0%, transparent 70%);
+  }
+
+  .cover-badge {
+    display: inline-block;
+    padding: 8px 24px;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    margin-bottom: 40px;
+    position: relative;
+  }
+
+  .cover h1 {
+    font-size: 44px;
+    font-weight: 900;
+    line-height: 1.3;
+    margin-bottom: 16px;
+    position: relative;
+  }
+
+  .cover h2 {
+    font-size: 22px;
+    font-weight: 300;
+    opacity: 0.9;
+    margin-bottom: 60px;
+    position: relative;
+  }
+
+  .cover-meta {
+    position: relative;
+    font-size: 14px;
+    opacity: 0.7;
+    line-height: 2;
+  }
+
+  .cover-phases {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 60px;
+    position: relative;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .cover-phase {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 12px;
+    padding: 16px 20px;
+    min-width: 160px;
+    backdrop-filter: blur(10px);
+  }
+
+  .cover-phase .num {
+    font-size: 11px;
+    letter-spacing: 2px;
+    opacity: 0.7;
+    margin-bottom: 4px;
+  }
+
+  .cover-phase .name {
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  /* ── 섹션 ── */
+  section {
+    padding: 60px 0;
+    border-bottom: 1px solid var(--gray-200);
+  }
+
+  section:last-child { border-bottom: none; }
+
+  .section-num {
+    display: inline-block;
+    background: var(--primary);
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 32px;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  h2 {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--dark);
+    margin-bottom: 8px;
+  }
+
+  .section-sub {
+    font-size: 15px;
+    color: var(--gray-500);
+    margin-bottom: 32px;
+  }
+
+  h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--gray-800);
+    margin: 32px 0 16px;
+    padding-left: 12px;
+    border-left: 3px solid var(--primary);
+  }
+
+  h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--gray-700);
+    margin: 24px 0 12px;
+  }
+
+  p { margin-bottom: 12px; color: var(--gray-700); }
+
+  /* ── 효과 요약 카드 ── */
+  .impact-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    margin: 24px 0;
+  }
+
+  .impact-card {
+    background: var(--gray-50);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    padding: 20px 16px;
+    text-align: center;
+  }
+
+  .impact-card .label {
+    font-size: 12px;
+    color: var(--gray-500);
+    margin-bottom: 8px;
+  }
+
+  .impact-card .value {
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--primary);
+  }
+
+  .impact-card .unit {
+    font-size: 12px;
+    color: var(--gray-500);
+  }
+
+  /* ── 테이블 ── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0 24px;
+    font-size: 14px;
+  }
+
+  thead th {
+    background: var(--gray-800);
+    color: white;
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 13px;
+  }
+
+  thead th:first-child { border-radius: 8px 0 0 0; }
+  thead th:last-child { border-radius: 0 8px 0 0; }
+
+  tbody td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--gray-200);
+  }
+
+  tbody tr:hover { background: var(--gray-50); }
+
+  .saving {
+    color: var(--success);
+    font-weight: 700;
+  }
+
+  /* ── Phase 카드 ── */
+  .phase-card {
+    background: white;
+    border: 2px solid var(--gray-200);
+    border-radius: var(--radius);
+    padding: 32px;
+    margin: 24px 0;
+    position: relative;
+  }
+
+  .phase-card.highlight {
+    border-color: var(--primary);
+    box-shadow: 0 4px 24px rgba(26, 86, 219, 0.1);
+  }
+
+  .phase-badge {
+    display: inline-block;
+    background: var(--primary);
+    color: white;
+    padding: 4px 16px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+
+  .phase-badge.green { background: var(--success); }
+  .phase-badge.amber { background: var(--accent); color: var(--dark); }
+  .phase-badge.red { background: var(--danger); }
+
+  /* ── 아키텍처 다이어그램 ── */
+  .arch-diagram {
+    background: var(--gray-50);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    padding: 32px;
+    margin: 24px 0;
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    white-space: pre;
+    overflow-x: auto;
+  }
+
+  /* ── 시나리오 ── */
+  .scenario {
+    background: var(--gray-50);
+    border-left: 4px solid var(--primary);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 24px;
+    margin: 16px 0;
+  }
+
+  .scenario-title {
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 12px;
+  }
+
+  .chat-line {
+    margin: 8px 0;
+    padding: 8px 0;
+  }
+
+  .chat-line .speaker {
+    font-weight: 700;
+    display: inline-block;
+    min-width: 40px;
+  }
+
+  .chat-line .speaker.user { color: var(--gray-700); }
+  .chat-line .speaker.ai { color: var(--primary); }
+
+  .chat-line .text {
+    color: var(--gray-600);
+    white-space: pre-line;
+  }
+
+  /* ── 로드맵 ── */
+  .roadmap {
+    display: flex;
+    gap: 0;
+    margin: 32px 0;
+    position: relative;
+  }
+
+  .roadmap::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gray-200);
+    z-index: 0;
+  }
+
+  .roadmap-item {
+    flex: 1;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    padding: 0 8px;
+  }
+
+  .roadmap-dot {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+    margin: 0 auto 12px;
+    border: 4px solid white;
+    box-shadow: 0 0 0 2px var(--primary);
+  }
+
+  .roadmap-date {
+    font-size: 12px;
+    color: var(--gray-500);
+    margin-bottom: 4px;
+  }
+
+  .roadmap-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 4px;
+  }
+
+  .roadmap-period {
+    font-size: 12px;
+    color: var(--gray-500);
+  }
+
+  /* ── 비용 테이블 ── */
+  .cost-highlight {
+    background: var(--primary-light);
+    padding: 24px;
+    border-radius: var(--radius);
+    margin: 24px 0;
+    text-align: center;
+  }
+
+  .cost-highlight .label {
+    font-size: 14px;
+    color: var(--gray-600);
+    margin-bottom: 8px;
+  }
+
+  .cost-highlight .value {
+    font-size: 36px;
+    font-weight: 900;
+    color: var(--primary);
+  }
+
+  .cost-highlight .sub {
+    font-size: 13px;
+    color: var(--gray-500);
+    margin-top: 4px;
+  }
+
+  /* ── 지식베이스 트리 ── */
+  .kb-tree {
+    background: var(--gray-50);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    padding: 24px 32px;
+    margin: 16px 0;
+    font-size: 14px;
+    line-height: 2;
+  }
+
+  .kb-tree .category {
+    font-weight: 700;
+    color: var(--gray-800);
+  }
+
+  .kb-tree .item {
+    padding-left: 24px;
+    color: var(--gray-600);
+  }
+
+  .kb-tree .example {
+    color: var(--gray-500);
+    font-style: italic;
+    font-size: 13px;
+  }
+
+  /* ── 보안 그리드 ── */
+  .security-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 24px 0;
+  }
+
+  .security-item {
+    background: var(--gray-50);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    padding: 20px;
+  }
+
+  .security-item .title {
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+
+  .security-item .desc {
+    font-size: 13px;
+    color: var(--gray-600);
+  }
+
+  /* ── CTA ── */
+  .cta-section {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: white;
+    padding: 60px 40px;
+    border-radius: var(--radius);
+    text-align: center;
+    margin: 40px 0;
+  }
+
+  .cta-section h2 { color: white; margin-bottom: 16px; }
+  .cta-section p { color: rgba(255,255,255,0.8); }
+
+  .cta-steps {
+    display: flex;
+    gap: 24px;
+    margin-top: 32px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .cta-step {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    min-width: 180px;
+    text-align: left;
+  }
+
+  .cta-step .num {
+    font-size: 24px;
+    font-weight: 900;
+    opacity: 0.5;
+    margin-bottom: 4px;
+  }
+
+  .cta-step .text {
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  /* ── Print ── */
+  @media print {
+    .cover { min-height: auto; padding: 80px 40px; break-after: page; }
+    section { break-inside: avoid; }
+    .page { padding: 0 20px; }
+  }
+
+  @media (max-width: 768px) {
+    .impact-grid { grid-template-columns: repeat(2, 1fr); }
+    .security-grid { grid-template-columns: 1fr; }
+    .cover h1 { font-size: 28px; }
+    .cover-phases { flex-direction: column; align-items: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ 표지 ═══════════════ -->
+<div class="cover">
+  <div class="cover-badge">CONFIDENTIAL</div>
+  <h1>CNC코리아<br>AI 업무자동화 플랫폼<br>도입 제안서</h1>
+  <h2>이카운트 ERP 연동 + AI 챗봇 + 물류센터 확장</h2>
+
+  <div class="cover-phases">
+    <div class="cover-phase">
+      <div class="num">PHASE 1</div>
+      <div class="name">크롬 확장</div>
+    </div>
+    <div class="cover-phase">
+      <div class="num">PHASE 2</div>
+      <div class="name">AI 플랫폼</div>
+    </div>
+    <div class="cover-phase">
+      <div class="num">PHASE 3</div>
+      <div class="name">AI 챗봇</div>
+    </div>
+    <div class="cover-phase">
+      <div class="num">PHASE 4</div>
+      <div class="name">물류 확장</div>
+    </div>
+  </div>
+
+  <div class="cover-meta">
+    2026년 4월 28일<br>
+    제안사: 킷에이아이(KiTT AI)<br>
+    제출처: CNC코리아
+  </div>
+</div>
+
+<div class="page">
+
+<!-- ═══════════════ 1. 제안 개요 ═══════════════ -->
+<section>
+  <div class="section-num">1</div>
+  <h2>제안 개요</h2>
+  <p class="section-sub">단순 자동화를 넘어, AI 통합 플랫폼으로 진화하는 4단계 로드맵</p>
+
+  <p>CNC코리아는 이카운트 ERP를 기반으로 판매, 구매, 재고, 채권, 인사 업무를 운영하고 있으나, 다수의 반복 업무가 수작업으로 진행되어 <strong>월 60~80시간의 비효율</strong>이 발생하고 있습니다.</p>
+
+  <p>본 제안은 즉시 효과를 내는 <strong>크롬 확장 프로그램</strong>에서 시작하여, <strong>AI 대시보드 → AI 챗봇 → 물류센터 확장</strong>까지 단계적으로 도입하는 전략을 제시합니다.</p>
+
+  <div class="impact-grid">
+    <div class="impact-card">
+      <div class="label">반복 업무</div>
+      <div class="value">90<span class="unit">%</span></div>
+      <div class="unit">시간 절감</div>
+    </div>
+    <div class="impact-card">
+      <div class="label">입력 오류</div>
+      <div class="value">90<span class="unit">%</span></div>
+      <div class="unit">감소</div>
+    </div>
+    <div class="impact-card">
+      <div class="label">보고서</div>
+      <div class="value">100<span class="unit">%</span></div>
+      <div class="unit">자동 생성</div>
+    </div>
+    <div class="impact-card">
+      <div class="label">온보딩</div>
+      <div class="value">79<span class="unit">%</span></div>
+      <div class="unit">기간 단축</div>
+    </div>
+    <div class="impact-card">
+      <div class="label">의사결정</div>
+      <div class="value">즉시</div>
+      <div class="unit">실시간 데이터</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 2. Phase 1 ═══════════════ -->
+<section>
+  <div class="section-num">2</div>
+  <h2>Phase 1 — 크롬 확장 프로그램</h2>
+  <p class="section-sub">기존 업무 흐름 변경 없이, 이카운트 ERP 화면에서 바로 자동화 적용 | 4주</p>
+
+  <div class="phase-card highlight">
+    <span class="phase-badge">즉시 도입 가능</span>
+    <p>이카운트 ERP를 열면 사이드 패널에서 파일 업로드 → 미리보기 → 실행 3단계로 자동화가 완료됩니다. 별도 시스템 학습이 필요 없습니다.</p>
+  </div>
+
+  <h3>주문 · 물류 자동화</h3>
+  <table>
+    <thead><tr><th>기능</th><th>설명</th><th>절감</th></tr></thead>
+    <tbody>
+      <tr><td><strong>카톡 주문 수집·입력</strong></td><td>카카오톡 주문 → AI 파싱 → 이카운트 판매입력 자동 변환</td><td class="saving">30분→2분</td></tr>
+      <tr><td><strong>엑셀 판매입력 업로드</strong></td><td>엑셀 파일 → 자동 판매입력 일괄 등록</td><td class="saving">45분→3분</td></tr>
+      <tr><td><strong>물류센터 양식 변환</strong></td><td>이카운트 데이터 → 물류센터별 포맷 변환 → 메일 발송</td><td class="saving">20분→1분</td></tr>
+    </tbody>
+  </table>
+
+  <h3>견적 · 영업 자동화</h3>
+  <table>
+    <thead><tr><th>기능</th><th>설명</th><th>절감</th></tr></thead>
+    <tbody>
+      <tr><td><strong>거래처별 단가 추천</strong></td><td>과거 단가 패턴 학습 → AI 추천</td><td class="saving">신규 기능</td></tr>
+      <tr><td><strong>자동 견적서 생성</strong></td><td>견적서 자동 제작 + 이메일 전송</td><td class="saving">20분→3분</td></tr>
+      <tr><td><strong>미전환 견적 알림</strong></td><td>7/14일 무응답 견적 자동 follow-up</td><td class="saving">신규 기능</td></tr>
+      <tr><td><strong>가견적 (박스 추천)</strong></td><td>치수 입력 → 최적 박스 + 견적 자동 생성</td><td class="saving">신규 기능</td></tr>
+    </tbody>
+  </table>
+
+  <h3>결제 · 매입 · 재무 · 인사</h3>
+  <table>
+    <thead><tr><th>기능</th><th>설명</th><th>절감</th></tr></thead>
+    <tbody>
+      <tr><td><strong>세금계산서 매칭</strong></td><td>네이버페이/이니시스 ↔ 이카운트 자동 비교</td><td class="saving">40분→5분</td></tr>
+      <tr><td><strong>인보이스 OCR</strong></td><td>PDF → AI OCR → 구매입력 자동 변환</td><td class="saving">15분→2분</td></tr>
+      <tr><td><strong>채권현황 자동 갱신</strong></td><td>매일 자동 (기존 매주 수작업)</td><td class="saving">1시간→자동</td></tr>
+      <tr><td><strong>급여 원클릭</strong></td><td>급여대장 → 이체서 + 명세서 + 메일</td><td class="saving">2시간→5분</td></tr>
+      <tr><td><strong>영수증 OCR</strong></td><td>법인카드 영수증 → AI 분류 → 비용 리스트</td><td class="saving">신규 기능</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ═══════════════ 3. Phase 2 ═══════════════ -->
+<section>
+  <div class="section-num">3</div>
+  <h2>Phase 2 — AI 통합 대시보드 플랫폼</h2>
+  <p class="section-sub">이카운트 데이터를 실시간 수집·분석하는 독립 웹 플랫폼 | 8주</p>
+
+  <h3>실시간 대시보드</h3>
+  <p>KPI 카드(오늘 매출, 주문 수, 미수금, 재고 경고) + 매출 추이 차트 + 채널별 매출 비중 + 거래처 활동성 등급을 한 화면에서 확인합니다.</p>
+
+  <h3>거래처 통계 · 분석</h3>
+  <table>
+    <thead><tr><th>기능</th><th>설명</th></tr></thead>
+    <tbody>
+      <tr><td><strong>주문 이력 대시보드</strong></td><td>거래처별 주문 이력/추이 한눈에 파악</td></tr>
+      <tr><td><strong>매출 순위 (파레토)</strong></td><td>상위 20% 거래처의 매출 기여도 분석</td></tr>
+      <tr><td><strong>활동성 등급</strong></td><td>AI 기반 거래처 분류 (활성→주의→휴면→이탈)</td></tr>
+      <tr><td><strong>이탈 예측</strong></td><td>주문 패턴 이상 감지 → 선제 대응 알림</td></tr>
+      <tr><td><strong>결제 패턴</strong></td><td>평균 결제일, 연체 경향 분석</td></tr>
+      <tr><td><strong>신규 vs 기존 비율</strong></td><td>신규 거래처 유입률 추이 모니터링</td></tr>
+    </tbody>
+  </table>
+
+  <h3>매출 · 품목 분석</h3>
+  <table>
+    <thead><tr><th>기능</th><th>설명</th></tr></thead>
+    <tbody>
+      <tr><td><strong>기간별 매출 비교</strong></td><td>일/주/월/연 매출 전기 대비 증감률 자동 산출</td></tr>
+      <tr><td><strong>채널별 매출 비중</strong></td><td>스마트스토어 / 자사몰 / 카톡B2B 채널 분석</td></tr>
+      <tr><td><strong>품목별 순위</strong></td><td>기여도/마진 분리 분석</td></tr>
+      <tr><td><strong>시간대별 패턴</strong></td><td>주문 피크 시간 파악 → 인력 배치 최적화</td></tr>
+      <tr><td><strong>목표 달성률</strong></td><td>월별 목표 대비 실적 자동 트래킹</td></tr>
+      <tr><td><strong>시즌성 분석</strong></td><td>계절별 매출 패턴 → 재고 사전 확보</td></tr>
+    </tbody>
+  </table>
+
+  <h3>자동 보고서</h3>
+  <table>
+    <thead><tr><th>보고서</th><th>주기</th><th>내용</th></tr></thead>
+    <tbody>
+      <tr><td><strong>일간 매출 요약</strong></td><td>매일 18시</td><td>매출/주문/입금/특이사항</td></tr>
+      <tr><td><strong>주간 채권 현황</strong></td><td>매주 목요일</td><td>미수금 aging, 연체 거래처, 독촉 대상</td></tr>
+      <tr><td><strong>월간 손익 보고서</strong></td><td>매월 1일</td><td>매출/매입/마진/전월 대비</td></tr>
+      <tr><td><strong>거래처 랭킹</strong></td><td>월간</td><td>매출 TOP20, 신규, 이탈 위험</td></tr>
+    </tbody>
+  </table>
+  <p>→ 이메일 자동 발송 + PDF 다운로드 + 대시보드 표시</p>
+</section>
+
+<!-- ═══════════════ 4. Phase 3 ═══════════════ -->
+<section>
+  <div class="section-num">4</div>
+  <h2>Phase 3 — 사내 AI 챗봇</h2>
+  <p class="section-sub">CNC코리아의 모든 사내 정보를 학습한 AI 지식 비서 | 8주</p>
+
+  <p>직원 누구나 자연어로 질문하면 즉시 답변을 받을 수 있는 <strong>사내 지식 플랫폼</strong>입니다.</p>
+
+  <h3>학습 데이터 범위</h3>
+  <div class="kb-tree">
+    <div class="category">ERP 데이터 (이카운트 실시간 연동)</div>
+    <div class="item">재고 현황 <span class="example">— "A0001 박스 재고 몇 개야?"</span></div>
+    <div class="item">거래처 정보 <span class="example">— "홍길동 상사 최근 주문 내역?"</span></div>
+    <div class="item">매출/매입 <span class="example">— "이번 달 매출 얼마야?"</span></div>
+    <div class="item">채권 현황 <span class="example">— "연체 중인 거래처 리스트?"</span></div>
+    <br>
+    <div class="category">업무 매뉴얼</div>
+    <div class="item">이카운트 사용법 <span class="example">— "판매전표 수정하는 방법?"</span></div>
+    <div class="item">물류 프로세스 <span class="example">— "CJ대한통운 발송 절차?"</span></div>
+    <div class="item">신규 직원 온보딩 <span class="example">— "첫 주에 뭘 해야 해?"</span></div>
+    <br>
+    <div class="category">계약서 · 문서</div>
+    <div class="item">거래처 계약서 <span class="example">— "A사 계약 조건 확인"</span></div>
+    <div class="item">단가 계약 <span class="example">— "B사 올해 단가?"</span></div>
+    <div class="item">내부 규정 <span class="example">— "출장비 정산 기준?"</span></div>
+    <br>
+    <div class="category">업체 관리</div>
+    <div class="item">거래처 DB <span class="example">— "A사 담당자 연락처?"</span></div>
+    <div class="item">공급업체 <span class="example">— "원지 공급업체 리스트?"</span></div>
+    <div class="item">물류업체 <span class="example">— "제주도 배송 가능 업체?"</span></div>
+    <br>
+    <div class="category">업무 노하우 (축적형)</div>
+    <div class="item">자주 묻는 질문 <span class="example">— 반복 질의 자동 학습</span></div>
+    <div class="item">문제 해결 사례 <span class="example">— "지난번 클레임 어떻게 처리했지?"</span></div>
+  </div>
+
+  <h3>활용 시나리오</h3>
+
+  <div class="scenario">
+    <div class="scenario-title">시나리오 1: 영업 담당자</div>
+    <div class="chat-line"><span class="speaker user">직원:</span> <span class="text">"홍길동 상사 최근 3개월 주문 내역 보여줘"</span></div>
+    <div class="chat-line"><span class="speaker ai">AI:</span> <span class="text">홍길동 상사 (C001)
+- 4월: A형 500개, B형 200개 (1,200만원)
+- 3월: A형 300개 (600만원)
+- 2월: A형 400개, C형 100개 (950만원)
+※ 전분기 대비 25% 증가 | 미수금 230만원 (결제예정 4/30)</span></div>
+  </div>
+
+  <div class="scenario">
+    <div class="scenario-title">시나리오 2: 물류 담당자</div>
+    <div class="chat-line"><span class="speaker user">직원:</span> <span class="text">"오늘 출고할 주문 리스트"</span></div>
+    <div class="chat-line"><span class="speaker ai">AI:</span> <span class="text">오늘 출고 예정 8건:
+1. 홍길동 상사 — A형 500개 (CJ대한통운)
+2. 김영수 — B형 50개 (한진택배)
+※ A형 재고: 2,300개 (출고 후 1,800개)
+※ 재고 부족 예상일: 5/15</span></div>
+  </div>
+
+  <div class="scenario">
+    <div class="scenario-title">시나리오 3: 경영진</div>
+    <div class="chat-line"><span class="speaker user">대표:</span> <span class="text">"이번 주 매출 요약"</span></div>
+    <div class="chat-line"><span class="speaker ai">AI:</span> <span class="text">금주 매출: 4,850만원 (전주 대비 +12%)
+주문 47건 | 스마트스토어 45% / 카톡B2B 35% / 자사몰 20%
+톱3: A형(35%), B형(28%), C형(15%)
+연간 목표 달성률: 35% (현 추세 시 12.8억 예상)</span></div>
+  </div>
+
+  <h3>기술 핵심</h3>
+  <table>
+    <thead><tr><th>기술</th><th>역할</th></tr></thead>
+    <tbody>
+      <tr><td><strong>RAG</strong></td><td>사내 문서 벡터화 → 질문 관련 문서 검색 → 정확한 답변 생성</td></tr>
+      <tr><td><strong>Tool Use</strong></td><td>AI가 이카운트 API를 직접 호출하여 실시간 데이터 조회</td></tr>
+      <tr><td><strong>MCP 서버</strong></td><td>Claude Desktop/웹에서 이카운트 도구를 자연어로 사용</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ═══════════════ 5. Phase 4 ═══════════════ -->
+<section>
+  <div class="section-num">5</div>
+  <h2>Phase 4 — 물류센터 확장</h2>
+  <p class="section-sub">주문 → 생산 → 출고 → 배송 → 정산 End-to-End 자동화 | 12주</p>
+
+  <h3>입고 관리</h3>
+  <table>
+    <thead><tr><th>기능</th><th>설명</th></tr></thead>
+    <tbody>
+      <tr><td><strong>바코드/QR 스캔</strong></td><td>입고 수량 자동 입력 → 이카운트 재고 반영</td></tr>
+      <tr><td><strong>AI 이미지 검수</strong></td><td>불량/파손 자동 감지</td></tr>
+      <tr><td><strong>납품 품질 분석</strong></td><td>공급업체별 입고 이력 → 품질 트렌드</td></tr>
+    </tbody>
+  </table>
+
+  <h3>재고 · 창고 관리</h3>
+  <table>
+    <thead><tr><th>기능</th><th>설명</th></tr></thead>
+    <tbody>
+      <tr><td><strong>로케이션 관리</strong></td><td>창고 내 위치 추적</td></tr>
+      <tr><td><strong>AI 안전재고 예측</strong></td><td>수요 패턴 학습 → 자동 발주점 조정</td></tr>
+      <tr><td><strong>ABC 분석</strong></td><td>품목별 회전율 기반 자동 등급화</td></tr>
+      <tr><td><strong>재고 실사</strong></td><td>태블릿 바코드 스캔 → 차이 자동 보고</td></tr>
+    </tbody>
+  </table>
+
+  <h3>출고 · 배송 관리</h3>
+  <table>
+    <thead><tr><th>기능</th><th>설명</th></tr></thead>
+    <tbody>
+      <tr><td><strong>AI 피킹 최적화</strong></td><td>동선 최적화된 피킹 리스트 자동 생성</td></tr>
+      <tr><td><strong>택배사 자동 연동</strong></td><td>CJ/한진/롯데/우체국 API 연동</td></tr>
+      <tr><td><strong>송장 자동 동기화</strong></td><td>이카운트 + 카페24 동시 업데이트</td></tr>
+      <tr><td><strong>배송 추적</strong></td><td>실시간 상태 → 완료 시 자동 정산</td></tr>
+    </tbody>
+  </table>
+
+  <h3>물류 분석 대시보드</h3>
+  <p>일일 입출고량, 창고 가동률, 피킹 효율, 배송 리드타임, 반품·클레임률을 실시간 모니터링합니다.</p>
+</section>
+
+<!-- ═══════════════ 6. 로드맵 ═══════════════ -->
+<section>
+  <div class="section-num">6</div>
+  <h2>단계별 도입 로드맵</h2>
+  <p class="section-sub">Phase별 독립 배포 — 리스크 최소화, 단계별 효과 확인</p>
+
+  <div class="roadmap">
+    <div class="roadmap-item">
+      <div class="roadmap-dot">1</div>
+      <div class="roadmap-date">2026.05</div>
+      <div class="roadmap-name">크롬 확장</div>
+      <div class="roadmap-period">4주 · 즉시 효과</div>
+    </div>
+    <div class="roadmap-item">
+      <div class="roadmap-dot">2</div>
+      <div class="roadmap-date">2026.07</div>
+      <div class="roadmap-name">AI 플랫폼</div>
+      <div class="roadmap-period">8주 · 전사 분석</div>
+    </div>
+    <div class="roadmap-item">
+      <div class="roadmap-dot">3</div>
+      <div class="roadmap-date">2026.10</div>
+      <div class="roadmap-name">AI 챗봇</div>
+      <div class="roadmap-period">8주 · 지식 통합</div>
+    </div>
+    <div class="roadmap-item">
+      <div class="roadmap-dot">4</div>
+      <div class="roadmap-date">2027.01</div>
+      <div class="roadmap-name">물류 확장</div>
+      <div class="roadmap-period">12주 · 물류 통합</div>
+    </div>
+  </div>
+
+  <table>
+    <thead><tr><th>Phase</th><th>기간</th><th>주요 마일스톤</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Phase 1</strong></td><td>4주</td><td>W1-2: 핵심 워크플로우 3개 / W3-4: 전체 13개 + 테스트</td></tr>
+      <tr><td><strong>Phase 2</strong></td><td>8주</td><td>W1-3: 백엔드+DB / W4-6: 프론트엔드 / W7-8: 보고서+테스트</td></tr>
+      <tr><td><strong>Phase 3</strong></td><td>8주</td><td>W1-3: 지식베이스 구축 / W4-6: 챗봇 엔진 / W7-8: 연동+테스트</td></tr>
+      <tr><td><strong>Phase 4</strong></td><td>12주</td><td>W1-4: WMS 설계 / W5-8: 입출고 시스템 / W9-12: 배송+최적화</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ═══════════════ 7. 비용 ═══════════════ -->
+<section>
+  <div class="section-num">7</div>
+  <h2>투자 비용 및 ROI</h2>
+  <p class="section-sub">Phase별 독립 투자 — 효과 확인 후 다음 단계 진행</p>
+
+  <h3>투자 비용 (추정)</h3>
+  <table>
+    <thead><tr><th>구분</th><th>Phase 1</th><th>Phase 2</th><th>Phase 3</th><th>Phase 4</th></tr></thead>
+    <tbody>
+      <tr><td><strong>개발비</strong></td><td>800만원</td><td>2,000만원</td><td>2,500만원</td><td>3,500만원</td></tr>
+      <tr><td><strong>인프라 (월)</strong></td><td>0원</td><td>30만원</td><td>50만원</td><td>80만원</td></tr>
+      <tr><td><strong>AI API (월)</strong></td><td>5만원</td><td>15만원</td><td>30만원</td><td>40만원</td></tr>
+    </tbody>
+  </table>
+
+  <h3>월간 절감 효과</h3>
+  <table>
+    <thead><tr><th>항목</th><th>절감 시간</th><th>환산 비용</th></tr></thead>
+    <tbody>
+      <tr><td>반복 업무 자동화</td><td>72시간/월</td><td class="saving">180만원</td></tr>
+      <tr><td>보고서 자동화</td><td>20시간/월</td><td class="saving">50만원</td></tr>
+      <tr><td>데이터 입력 오류 감소</td><td>10시간/월</td><td class="saving">25만원</td></tr>
+      <tr><td>AI 챗봇 (문의 대응)</td><td>15시간/월</td><td class="saving">37.5만원</td></tr>
+      <tr><td>물류 효율화</td><td>30시간/월</td><td class="saving">75만원</td></tr>
+      <tr><td><strong>합계</strong></td><td><strong>147시간/월</strong></td><td class="saving"><strong>367.5만원/월</strong></td></tr>
+    </tbody>
+  </table>
+
+  <div class="cost-highlight">
+    <div class="label">투자 회수 기간</div>
+    <div class="value">약 18개월</div>
+    <div class="sub">3년 누적 순이익: +3,430만원 (정량화 어려운 효과 미포함)</div>
+  </div>
+</section>
+
+<!-- ═══════════════ 8. 보안 ═══════════════ -->
+<section>
+  <div class="section-num">8</div>
+  <h2>보안 및 데이터 관리</h2>
+  <p class="section-sub">엔터프라이즈급 보안 체계 적용</p>
+
+  <div class="security-grid">
+    <div class="security-item">
+      <div class="title">API 인증</div>
+      <div class="desc">이카운트 공식 Open API 인증<br>SESSION_ID 기반, 24시간 자동 만료</div>
+    </div>
+    <div class="security-item">
+      <div class="title">데이터 전송</div>
+      <div class="desc">HTTPS (TLS 1.3)<br>모든 통신 암호화</div>
+    </div>
+    <div class="security-item">
+      <div class="title">데이터 저장</div>
+      <div class="desc">PostgreSQL<br>민감 필드 AES-256 암호화</div>
+    </div>
+    <div class="security-item">
+      <div class="title">AI API</div>
+      <div class="desc">Claude API<br>입력 데이터 학습에 사용 안 함</div>
+    </div>
+    <div class="security-item">
+      <div class="title">접근 제어</div>
+      <div class="desc">역할 기반 접근 제어 (RBAC)<br>관리자/영업/물류/경영진</div>
+    </div>
+    <div class="security-item">
+      <div class="title">감사 로그</div>
+      <div class="desc">모든 API 호출/접근 로그 기록<br>90일 보관</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 9. CTA ═══════════════ -->
+<section>
+  <div class="cta-section">
+    <h2>다음 단계</h2>
+    <p>Phase 1부터 바로 시작할 수 있습니다</p>
+
+    <div class="cta-steps">
+      <div class="cta-step">
+        <div class="num">01</div>
+        <div class="text">이카운트 API<br>인증키 발급</div>
+      </div>
+      <div class="cta-step">
+        <div class="num">02</div>
+        <div class="text">핵심 워크플로우 3개<br>우선 구현 + 현장 테스트</div>
+      </div>
+      <div class="cta-step">
+        <div class="num">03</div>
+        <div class="text">실제 데이터로<br>파싱 정확도 검증</div>
+      </div>
+      <div class="cta-step">
+        <div class="num">04</div>
+        <div class="text">Phase 2 범위<br>KPI/차트 항목 확정</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center;margin-top:40px;padding:40px 0;color:var(--gray-500);font-size:14px;">
+    <strong style="color:var(--dark);font-size:16px;">킷에이아이(KiTT AI)</strong><br><br>
+    본 제안서에 대한 문의<br>
+    이메일: contact@kitt-ai.com<br>
+    <br>
+    <span style="font-size:12px;">2026.04.28 | CONFIDENTIAL</span>
+  </div>
+</section>
+
+</div><!-- .page -->
+</body>
+</html>
