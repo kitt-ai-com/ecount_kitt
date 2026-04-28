@@ -332,3 +332,8 @@ body {
   from { opacity: 0; transform: translateX(-50%) translateY(10px); }
   to { opacity: 1; transform: translateX(-50%) translateY(0); }
 }
+
+/* ── 대사 결과 테이블 확장 ── */
+.preview-table-wrap { max-height: 400px; }
+.preview-table td[style*="text-align:right"] { font-variant-numeric: tabular-nums; }
+.preview-table tr td:first-child { white-space: nowrap; }

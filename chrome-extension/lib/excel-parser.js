@@ -26,20 +26,37 @@ export function parseExcelBuffer(buffer) {
 
 /**
  * INICIS PG 정산 엑셀 파싱
- * 컬럼: 거래일자, 승인번호, 카드사, 결제금액, 수수료, 정산금액, 상점명 등
+ * 컬럼: 지급일, 승인일, 주문번호, 거래금액, 수수료, 부가세, 지급액
  */
 export function parseINICIS(buffer) {
   const { headers, rows } = parseExcelBuffer(buffer);
-  return rows.map(r => ({
-    date: formatDate(r['거래일자'] || r['정산일자'] || r['매출일자'] || ''),
-    approvalNo: r['승인번호'] || '',
-    cardCompany: r['카드사'] || '',
-    amount: parseAmount(r['결제금액'] || r['거래금액'] || r['매출금액'] || 0),
-    fee: parseAmount(r['수수료'] || r['PG수수료'] || 0),
-    settleAmount: parseAmount(r['정산금액'] || r['입금금액'] || 0),
-    pgName: 'INICIS',
-    remarks: `INICIS ${r['승인번호'] || ''}`,
-  }));
+  return rows
+    .filter(r => {
+      // 합계/요약/계 행 제외
+      const firstVal = Object.values(r)[0] || '';
+      if (typeof firstVal === 'string') {
+        if (firstVal.includes('요약') || firstVal.includes('합계') || firstVal.endsWith('계')) return false;
+      }
+      // 주문번호 필수
+      return !!(r['주문번호'] || r['주문No'] || r['ORDER_NO'] || r['승인번호']);
+    })
+    .map(r => ({
+      paymentDate: formatDate(r['지급일'] || r['정산일'] || r['입금일'] || ''),
+      approvalDate: formatDate(r['승인일'] || r['거래일자'] || r['정산일자'] || r['매출일자'] || ''),
+      orderNo: String(r['주문번호'] || r['주문No'] || r['ORDER_NO'] || '').trim(),
+      approvalNo: r['승인번호'] || '',
+      cardCompany: r['카드사'] || '',
+      transactionAmount: parseAmount(r['거래금액'] || r['결제금액'] || r['매출금액'] || 0),
+      fee: parseAmount(r['수수료'] || r['PG수수료'] || 0),
+      feeVat: parseAmount(r['부가세'] || r['수수료부가세'] || 0),
+      netAmount: parseAmount(r['지급액'] || r['정산금액'] || r['입금금액'] || 0),
+      amount: parseAmount(r['거래금액'] || r['결제금액'] || r['매출금액'] || 0),
+      settleAmount: parseAmount(r['지급액'] || r['정산금액'] || r['입금금액'] || 0),
+      isRefund: parseAmount(r['거래금액'] || r['결제금액'] || r['매출금액'] || 0) < 0,
+      pgName: 'INICIS',
+      remarks: `INICIS ${r['주문번호'] || r['승인번호'] || ''}`,
+      date: formatDate(r['승인일'] || r['거래일자'] || r['정산일자'] || r['매출일자'] || ''),
+    }));
 }
 
 /**
@@ -125,12 +142,17 @@ export function parseBankDeposits(buffer) {
  * 파일 유형 자동 감지
  */
 export function detectFileType(headers) {
-  const h = headers.join(' ').toLowerCase();
-  if (h.includes('승인번호') && (h.includes('카드사') || h.includes('inicis'))) return 'inicis';
-  if (h.includes('네이버페이') || h.includes('npay')) return 'naverpay';
+  const h = headers.join(' ');
+  const hl = h.toLowerCase();
+  // PG정산 (지급일+주문번호+거래금액+수수료)
+  if ((h.includes('지급일') || h.includes('정산일')) && h.includes('주문번호') && (h.includes('거래금액') || h.includes('수수료'))) return 'pg-settlement';
+  if (h.includes('승인번호') && (h.includes('카드사') || hl.includes('inicis'))) return 'inicis';
+  if (hl.includes('네이버페이') || hl.includes('npay')) return 'naverpay';
   if (h.includes('주문번호') && h.includes('배송')) return 'cafe24';
   if (h.includes('기본급') || h.includes('급여') || h.includes('실지급액')) return 'payroll';
   if (h.includes('입금액') || h.includes('적요') || h.includes('잔액')) return 'bank';
+  // ECOUNT 매출 데이터 (발행일+과세매출)
+  if (h.includes('발행일') && (h.includes('과세매출') || h.includes('신용카드매출전표'))) return 'ecount-sales';
   return 'generic';
 }
 
