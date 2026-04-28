@@ -16,6 +16,7 @@
     --success: #059669;
     --success-light: #d1fae5;
     --danger: #dc2626;
+    --danger-light: #fee2e2;
     --dark: #111827;
     --gray-50: #f9fafb;
     --gray-100: #f3f4f6;
@@ -38,935 +39,668 @@
     font-size: 15px;
   }
 
-  /* ── 페이지 레이아웃 ── */
-  .page {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 0 40px;
-  }
+  .page { max-width: 900px; margin: 0 auto; padding: 0 40px; }
 
   /* ── 표지 ── */
   .cover {
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
     background: linear-gradient(135deg, #1a56db 0%, #0f3490 50%, #0a1f5e 100%);
-    color: white;
-    text-align: center;
-    padding: 60px 40px;
-    position: relative;
-    overflow: hidden;
+    color: white; text-align: center; padding: 60px 40px; position: relative; overflow: hidden;
   }
-
   .cover::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    right: -30%;
-    width: 80%;
-    height: 200%;
+    content: ''; position: absolute; top: -50%; right: -30%; width: 80%; height: 200%;
     background: radial-gradient(ellipse, rgba(255,255,255,0.05) 0%, transparent 70%);
   }
-
   .cover-badge {
-    display: inline-block;
-    padding: 8px 24px;
-    border: 1px solid rgba(255,255,255,0.3);
-    border-radius: 100px;
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 2px;
-    margin-bottom: 40px;
-    position: relative;
+    display: inline-block; padding: 8px 24px; border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 100px; font-size: 13px; font-weight: 500; letter-spacing: 2px;
+    margin-bottom: 40px; position: relative;
   }
-
-  .cover h1 {
-    font-size: 44px;
-    font-weight: 900;
-    line-height: 1.3;
-    margin-bottom: 16px;
-    position: relative;
-  }
-
-  .cover h2 {
-    font-size: 22px;
-    font-weight: 300;
-    opacity: 0.9;
-    margin-bottom: 60px;
-    position: relative;
-  }
-
-  .cover-meta {
-    position: relative;
-    font-size: 14px;
-    opacity: 0.7;
-    line-height: 2;
-  }
-
-  .cover-phases {
-    display: flex;
-    gap: 16px;
-    margin-bottom: 60px;
-    position: relative;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
+  .cover h1 { font-size: 44px; font-weight: 900; line-height: 1.3; margin-bottom: 16px; position: relative; }
+  .cover h2 { font-size: 22px; font-weight: 300; opacity: 0.9; margin-bottom: 60px; position: relative; }
+  .cover-meta { position: relative; font-size: 14px; opacity: 0.7; line-height: 2; }
+  .cover-phases { display: flex; gap: 16px; margin-bottom: 60px; position: relative; flex-wrap: wrap; justify-content: center; }
   .cover-phase {
-    background: rgba(255,255,255,0.1);
-    border: 1px solid rgba(255,255,255,0.2);
-    border-radius: 12px;
-    padding: 16px 20px;
-    min-width: 160px;
-    backdrop-filter: blur(10px);
+    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 12px; padding: 16px 20px; min-width: 160px; backdrop-filter: blur(10px);
   }
-
-  .cover-phase .num {
-    font-size: 11px;
-    letter-spacing: 2px;
-    opacity: 0.7;
-    margin-bottom: 4px;
-  }
-
-  .cover-phase .name {
-    font-size: 16px;
-    font-weight: 600;
-  }
+  .cover-phase .num { font-size: 11px; letter-spacing: 2px; opacity: 0.7; margin-bottom: 4px; }
+  .cover-phase .name { font-size: 16px; font-weight: 600; }
 
   /* ── 섹션 ── */
-  section {
-    padding: 60px 0;
-    border-bottom: 1px solid var(--gray-200);
-  }
-
+  section { padding: 60px 0; border-bottom: 1px solid var(--gray-200); }
   section:last-child { border-bottom: none; }
-
   .section-num {
-    display: inline-block;
-    background: var(--primary);
-    color: white;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    text-align: center;
-    line-height: 32px;
-    font-size: 14px;
-    font-weight: 700;
-    margin-bottom: 12px;
+    display: inline-block; background: var(--primary); color: white;
+    width: 32px; height: 32px; border-radius: 50%; text-align: center;
+    line-height: 32px; font-size: 14px; font-weight: 700; margin-bottom: 12px;
   }
-
-  h2 {
-    font-size: 28px;
-    font-weight: 800;
-    color: var(--dark);
-    margin-bottom: 8px;
-  }
-
-  .section-sub {
-    font-size: 15px;
-    color: var(--gray-500);
-    margin-bottom: 32px;
-  }
-
-  h3 {
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--gray-800);
-    margin: 32px 0 16px;
-    padding-left: 12px;
-    border-left: 3px solid var(--primary);
-  }
-
-  h4 {
-    font-size: 16px;
-    font-weight: 600;
-    color: var(--gray-700);
-    margin: 24px 0 12px;
-  }
-
+  h2 { font-size: 28px; font-weight: 800; color: var(--dark); margin-bottom: 8px; }
+  .section-sub { font-size: 15px; color: var(--gray-500); margin-bottom: 32px; }
+  h3 { font-size: 20px; font-weight: 700; color: var(--gray-800); margin: 32px 0 16px; padding-left: 12px; border-left: 3px solid var(--primary); }
+  h4 { font-size: 16px; font-weight: 600; color: var(--gray-700); margin: 24px 0 12px; }
   p { margin-bottom: 12px; color: var(--gray-700); }
 
-  /* ── 효과 요약 카드 ── */
-  .impact-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 12px;
-    margin: 24px 0;
-  }
-
-  .impact-card {
-    background: var(--gray-50);
-    border: 1px solid var(--gray-200);
-    border-radius: var(--radius);
-    padding: 20px 16px;
-    text-align: center;
-  }
-
-  .impact-card .label {
-    font-size: 12px;
-    color: var(--gray-500);
-    margin-bottom: 8px;
-  }
-
-  .impact-card .value {
-    font-size: 28px;
-    font-weight: 900;
-    color: var(--primary);
-  }
-
-  .impact-card .unit {
-    font-size: 12px;
-    color: var(--gray-500);
-  }
+  /* ── 카드 ── */
+  .impact-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin: 24px 0; }
+  .impact-card { background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 20px 16px; text-align: center; }
+  .impact-card .label { font-size: 12px; color: var(--gray-500); margin-bottom: 8px; }
+  .impact-card .value { font-size: 28px; font-weight: 900; color: var(--primary); }
+  .impact-card .unit { font-size: 12px; color: var(--gray-500); }
 
   /* ── 테이블 ── */
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 16px 0 24px;
-    font-size: 14px;
-  }
-
-  thead th {
-    background: var(--gray-800);
-    color: white;
-    padding: 12px 16px;
-    text-align: left;
-    font-weight: 600;
-    font-size: 13px;
-  }
-
+  table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 14px; }
+  thead th { background: var(--gray-800); color: white; padding: 12px 16px; text-align: left; font-weight: 600; font-size: 13px; }
   thead th:first-child { border-radius: 8px 0 0 0; }
   thead th:last-child { border-radius: 0 8px 0 0; }
-
-  tbody td {
-    padding: 12px 16px;
-    border-bottom: 1px solid var(--gray-200);
-  }
-
+  tbody td { padding: 12px 16px; border-bottom: 1px solid var(--gray-200); }
   tbody tr:hover { background: var(--gray-50); }
-
-  .saving {
-    color: var(--success);
-    font-weight: 700;
-  }
+  .saving { color: var(--success); font-weight: 700; }
 
   /* ── Phase 카드 ── */
-  .phase-card {
-    background: white;
-    border: 2px solid var(--gray-200);
-    border-radius: var(--radius);
-    padding: 32px;
-    margin: 24px 0;
-    position: relative;
-  }
-
-  .phase-card.highlight {
-    border-color: var(--primary);
-    box-shadow: 0 4px 24px rgba(26, 86, 219, 0.1);
-  }
-
-  .phase-badge {
-    display: inline-block;
-    background: var(--primary);
-    color: white;
-    padding: 4px 16px;
-    border-radius: 100px;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    margin-bottom: 12px;
-  }
-
+  .phase-card { background: white; border: 2px solid var(--gray-200); border-radius: var(--radius); padding: 32px; margin: 24px 0; }
+  .phase-card.highlight { border-color: var(--primary); box-shadow: 0 4px 24px rgba(26, 86, 219, 0.1); }
+  .phase-badge { display: inline-block; background: var(--primary); color: white; padding: 4px 16px; border-radius: 100px; font-size: 12px; font-weight: 700; letter-spacing: 1px; margin-bottom: 12px; }
   .phase-badge.green { background: var(--success); }
   .phase-badge.amber { background: var(--accent); color: var(--dark); }
-  .phase-badge.red { background: var(--danger); }
 
-  /* ── 아키텍처 다이어그램 ── */
-  .arch-diagram {
-    background: var(--gray-50);
-    border: 1px solid var(--gray-200);
-    border-radius: var(--radius);
-    padding: 32px;
-    margin: 24px 0;
-    font-family: 'Courier New', monospace;
-    font-size: 13px;
-    line-height: 1.6;
-    white-space: pre;
-    overflow-x: auto;
-  }
+  /* ── 옵션 비교 ── */
+  .option-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 24px 0; }
+  .option-card { border: 2px solid var(--gray-200); border-radius: var(--radius); padding: 24px; position: relative; }
+  .option-card.recommended { border-color: var(--primary); background: var(--primary-light); }
+  .option-card .option-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--primary); color: white; padding: 2px 16px; border-radius: 100px; font-size: 11px; font-weight: 700; }
+  .option-card .option-name { font-size: 18px; font-weight: 800; margin-bottom: 4px; }
+  .option-card .option-range { font-size: 13px; color: var(--gray-500); margin-bottom: 16px; }
+  .option-card .option-price { font-size: 24px; font-weight: 900; color: var(--primary); margin-bottom: 4px; }
+  .option-card .option-detail { font-size: 13px; color: var(--gray-600); line-height: 2; }
+
+  /* ── 알림 박스 ── */
+  .note-box { background: var(--accent-light); border-left: 4px solid var(--accent); border-radius: 0 var(--radius) var(--radius) 0; padding: 16px 20px; margin: 16px 0; font-size: 14px; color: var(--gray-700); }
+  .note-box.blue { background: var(--primary-light); border-color: var(--primary); }
+  .note-box.red { background: var(--danger-light); border-color: var(--danger); }
+  .note-box strong { color: var(--dark); }
 
   /* ── 시나리오 ── */
-  .scenario {
-    background: var(--gray-50);
-    border-left: 4px solid var(--primary);
-    border-radius: 0 var(--radius) var(--radius) 0;
-    padding: 24px;
-    margin: 16px 0;
-  }
-
-  .scenario-title {
-    font-weight: 700;
-    color: var(--primary);
-    margin-bottom: 12px;
-  }
-
-  .chat-line {
-    margin: 8px 0;
-    padding: 8px 0;
-  }
-
-  .chat-line .speaker {
-    font-weight: 700;
-    display: inline-block;
-    min-width: 40px;
-  }
-
+  .scenario { background: var(--gray-50); border-left: 4px solid var(--primary); border-radius: 0 var(--radius) var(--radius) 0; padding: 24px; margin: 16px 0; }
+  .scenario-title { font-weight: 700; color: var(--primary); margin-bottom: 12px; }
+  .chat-line { margin: 8px 0; padding: 8px 0; }
+  .chat-line .speaker { font-weight: 700; display: inline-block; min-width: 40px; }
   .chat-line .speaker.user { color: var(--gray-700); }
   .chat-line .speaker.ai { color: var(--primary); }
-
-  .chat-line .text {
-    color: var(--gray-600);
-    white-space: pre-line;
-  }
+  .chat-line .text { color: var(--gray-600); white-space: pre-line; }
 
   /* ── 로드맵 ── */
-  .roadmap {
-    display: flex;
-    gap: 0;
-    margin: 32px 0;
-    position: relative;
-  }
+  .roadmap { display: flex; gap: 0; margin: 32px 0; position: relative; }
+  .roadmap::before { content: ''; position: absolute; top: 50%; left: 0; right: 0; height: 4px; background: var(--gray-200); z-index: 0; }
+  .roadmap-item { flex: 1; text-align: center; position: relative; z-index: 1; padding: 0 8px; }
+  .roadmap-dot { width: 40px; height: 40px; border-radius: 50%; background: var(--primary); color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; margin: 0 auto 12px; border: 4px solid white; box-shadow: 0 0 0 2px var(--primary); }
+  .roadmap-date { font-size: 12px; color: var(--gray-500); margin-bottom: 4px; }
+  .roadmap-name { font-size: 14px; font-weight: 700; color: var(--dark); margin-bottom: 4px; }
+  .roadmap-period { font-size: 12px; color: var(--gray-500); }
 
-  .roadmap::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: var(--gray-200);
-    z-index: 0;
-  }
+  /* ── ROI ── */
+  .cost-highlight { background: var(--primary-light); padding: 24px; border-radius: var(--radius); margin: 24px 0; text-align: center; }
+  .cost-highlight .label { font-size: 14px; color: var(--gray-600); margin-bottom: 8px; }
+  .cost-highlight .value { font-size: 36px; font-weight: 900; color: var(--primary); }
+  .cost-highlight .sub { font-size: 13px; color: var(--gray-500); margin-top: 4px; }
 
-  .roadmap-item {
-    flex: 1;
-    text-align: center;
-    position: relative;
-    z-index: 1;
-    padding: 0 8px;
-  }
+  /* ── 보안 ── */
+  .security-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 24px 0; }
+  .security-item { background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 20px; }
+  .security-item .title { font-weight: 700; font-size: 14px; margin-bottom: 8px; }
+  .security-item .desc { font-size: 13px; color: var(--gray-600); }
 
-  .roadmap-dot {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: var(--primary);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    font-size: 14px;
-    margin: 0 auto 12px;
-    border: 4px solid white;
-    box-shadow: 0 0 0 2px var(--primary);
-  }
+  /* ── 게이트 ── */
+  .gate-card { border: 2px solid var(--success); border-radius: var(--radius); padding: 24px; margin: 16px 0; background: var(--success-light); }
+  .gate-card .gate-title { font-weight: 700; color: var(--success); margin-bottom: 8px; }
+  .gate-card .gate-stop { color: var(--danger); font-weight: 600; margin-top: 8px; font-size: 13px; }
 
-  .roadmap-date {
-    font-size: 12px;
-    color: var(--gray-500);
-    margin-bottom: 4px;
-  }
-
-  .roadmap-name {
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--dark);
-    margin-bottom: 4px;
-  }
-
-  .roadmap-period {
-    font-size: 12px;
-    color: var(--gray-500);
-  }
-
-  /* ── 비용 테이블 ── */
-  .cost-highlight {
-    background: var(--primary-light);
-    padding: 24px;
-    border-radius: var(--radius);
-    margin: 24px 0;
-    text-align: center;
-  }
-
-  .cost-highlight .label {
-    font-size: 14px;
-    color: var(--gray-600);
-    margin-bottom: 8px;
-  }
-
-  .cost-highlight .value {
-    font-size: 36px;
-    font-weight: 900;
-    color: var(--primary);
-  }
-
-  .cost-highlight .sub {
-    font-size: 13px;
-    color: var(--gray-500);
-    margin-top: 4px;
-  }
-
-  /* ── 지식베이스 트리 ── */
-  .kb-tree {
-    background: var(--gray-50);
-    border: 1px solid var(--gray-200);
-    border-radius: var(--radius);
-    padding: 24px 32px;
-    margin: 16px 0;
-    font-size: 14px;
-    line-height: 2;
-  }
-
-  .kb-tree .category {
-    font-weight: 700;
-    color: var(--gray-800);
-  }
-
-  .kb-tree .item {
-    padding-left: 24px;
-    color: var(--gray-600);
-  }
-
-  .kb-tree .example {
-    color: var(--gray-500);
-    font-style: italic;
-    font-size: 13px;
-  }
-
-  /* ── 보안 그리드 ── */
-  .security-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    margin: 24px 0;
-  }
-
-  .security-item {
-    background: var(--gray-50);
-    border: 1px solid var(--gray-200);
-    border-radius: var(--radius);
-    padding: 20px;
-  }
-
-  .security-item .title {
-    font-weight: 700;
-    font-size: 14px;
-    margin-bottom: 8px;
-  }
-
-  .security-item .desc {
-    font-size: 13px;
-    color: var(--gray-600);
-  }
+  /* ── 지식베이스 ── */
+  .kb-tree { background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 24px 32px; margin: 16px 0; font-size: 14px; line-height: 2; }
+  .kb-tree .category { font-weight: 700; color: var(--gray-800); }
+  .kb-tree .item { padding-left: 24px; color: var(--gray-600); }
+  .kb-tree .example { color: var(--gray-500); font-style: italic; font-size: 13px; }
 
   /* ── CTA ── */
-  .cta-section {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-    color: white;
-    padding: 60px 40px;
-    border-radius: var(--radius);
-    text-align: center;
-    margin: 40px 0;
-  }
-
+  .cta-section { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; padding: 60px 40px; border-radius: var(--radius); text-align: center; margin: 40px 0; }
   .cta-section h2 { color: white; margin-bottom: 16px; }
   .cta-section p { color: rgba(255,255,255,0.8); }
+  .cta-steps { display: flex; gap: 24px; margin-top: 32px; justify-content: center; flex-wrap: wrap; }
+  .cta-step { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: var(--radius); padding: 20px 24px; min-width: 180px; text-align: left; }
+  .cta-step .num { font-size: 24px; font-weight: 900; opacity: 0.5; margin-bottom: 4px; }
+  .cta-step .text { font-size: 14px; font-weight: 500; }
 
-  .cta-steps {
-    display: flex;
-    gap: 24px;
-    margin-top: 32px;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
+  /* ── 상태 뱃지 ── */
+  .status-proto { display: inline-block; background: var(--accent-light); color: #92400e; padding: 2px 10px; border-radius: 4px; font-size: 11px; font-weight: 700; }
+  .status-done { display: inline-block; background: var(--success-light); color: #065f46; padding: 2px 10px; border-radius: 4px; font-size: 11px; font-weight: 700; }
+  .status-todo { display: inline-block; background: var(--gray-100); color: var(--gray-600); padding: 2px 10px; border-radius: 4px; font-size: 11px; font-weight: 700; }
 
-  .cta-step {
-    background: rgba(255,255,255,0.1);
-    border: 1px solid rgba(255,255,255,0.2);
-    border-radius: var(--radius);
-    padding: 20px 24px;
-    min-width: 180px;
-    text-align: left;
-  }
-
-  .cta-step .num {
-    font-size: 24px;
-    font-weight: 900;
-    opacity: 0.5;
-    margin-bottom: 4px;
-  }
-
-  .cta-step .text {
-    font-size: 14px;
-    font-weight: 500;
-  }
-
-  /* ── Print ── */
-  @media print {
-    .cover { min-height: auto; padding: 80px 40px; break-after: page; }
-    section { break-inside: avoid; }
-    .page { padding: 0 20px; }
-  }
-
-  @media (max-width: 768px) {
-    .impact-grid { grid-template-columns: repeat(2, 1fr); }
-    .security-grid { grid-template-columns: 1fr; }
-    .cover h1 { font-size: 28px; }
-    .cover-phases { flex-direction: column; align-items: center; }
-  }
+  @media print { .cover { min-height: auto; padding: 80px 40px; break-after: page; } section { break-inside: avoid; } .page { padding: 0 20px; } }
+  @media (max-width: 768px) { .impact-grid { grid-template-columns: repeat(2, 1fr); } .security-grid, .option-grid { grid-template-columns: 1fr; } .cover h1 { font-size: 28px; } .cover-phases { flex-direction: column; align-items: center; } }
 </style>
 </head>
 <body>
 
-<!-- ═══════════════ 표지 ═══════════════ -->
+<!-- ═══════ 표지 ═══════ -->
 <div class="cover">
   <div class="cover-badge">CONFIDENTIAL</div>
   <h1>CNC코리아<br>AI 업무자동화 플랫폼<br>도입 제안서</h1>
   <h2>이카운트 ERP 연동 + AI 챗봇 + 물류센터 확장</h2>
-
   <div class="cover-phases">
-    <div class="cover-phase">
-      <div class="num">PHASE 1</div>
-      <div class="name">크롬 확장</div>
-    </div>
-    <div class="cover-phase">
-      <div class="num">PHASE 2</div>
-      <div class="name">AI 플랫폼</div>
-    </div>
-    <div class="cover-phase">
-      <div class="num">PHASE 3</div>
-      <div class="name">AI 챗봇</div>
-    </div>
-    <div class="cover-phase">
-      <div class="num">PHASE 4</div>
-      <div class="name">물류 확장</div>
-    </div>
+    <div class="cover-phase"><div class="num">PHASE 1</div><div class="name">크롬 확장</div></div>
+    <div class="cover-phase"><div class="num">PHASE 2</div><div class="name">AI 플랫폼</div></div>
+    <div class="cover-phase"><div class="num">PHASE 3</div><div class="name">AI 챗봇</div></div>
+    <div class="cover-phase"><div class="num">PHASE 4</div><div class="name">물류 확장</div></div>
   </div>
-
-  <div class="cover-meta">
-    2026년 4월 28일<br>
-    제안사: 킷에이아이(KiTT AI)<br>
-    제출처: CNC코리아
-  </div>
+  <div class="cover-meta">2026년 4월 28일<br>제안사: 킷에이아이(KiTT AI)<br>제출처: CNC코리아</div>
 </div>
 
 <div class="page">
 
-<!-- ═══════════════ 1. 제안 개요 ═══════════════ -->
+<!-- ═══════ 1. 도입 옵션 비교 ═══════ -->
 <section>
   <div class="section-num">1</div>
-  <h2>제안 개요</h2>
-  <p class="section-sub">단순 자동화를 넘어, AI 통합 플랫폼으로 진화하는 4단계 로드맵</p>
+  <h2>도입 옵션 비교</h2>
+  <p class="section-sub">Phase별 독립 계약 — 효과 확인 후 다음 단계를 결정합니다</p>
 
-  <p>CNC코리아는 이카운트 ERP를 기반으로 판매, 구매, 재고, 채권, 인사 업무를 운영하고 있으나, 다수의 반복 업무가 수작업으로 진행되어 <strong>월 60~80시간의 비효율</strong>이 발생하고 있습니다.</p>
+  <div class="option-grid">
+    <div class="option-card recommended">
+      <div class="option-badge">권장</div>
+      <div class="option-name">Option A: MVP</div>
+      <div class="option-range">Phase 1만</div>
+      <div class="option-price">800만원</div>
+      <div class="option-detail">
+        월 운영비: 5만원<br>
+        기간: 6주<br>
+        월 절감: 105만원 (추정)<br>
+        <strong>투자 회수: 약 8개월</strong><br>
+        리스크: 낮음
+      </div>
+    </div>
+    <div class="option-card">
+      <div class="option-name">Option B: 중간안</div>
+      <div class="option-range">Phase 1 + 2</div>
+      <div class="option-price">2,800만원</div>
+      <div class="option-detail">
+        월 운영비: 50만원<br>
+        기간: 16주<br>
+        월 절감: 150만원 (추정)<br>
+        <strong>투자 회수: 약 28개월</strong><br>
+        리스크: 중간
+      </div>
+    </div>
+    <div class="option-card">
+      <div class="option-name">Option C: 전체안</div>
+      <div class="option-range">Phase 1~4</div>
+      <div class="option-price">8,800만원</div>
+      <div class="option-detail">
+        월 운영비: 250만원<br>
+        기간: 40주<br>
+        월 절감: 295만원 (추정)<br>
+        <strong>투자 회수: 추가 분석 필요</strong><br>
+        리스크: 높음
+      </div>
+    </div>
+  </div>
 
-  <p>본 제안은 즉시 효과를 내는 <strong>크롬 확장 프로그램</strong>에서 시작하여, <strong>AI 대시보드 → AI 챗봇 → 물류센터 확장</strong>까지 단계적으로 도입하는 전략을 제시합니다.</p>
+  <div class="note-box blue">
+    <strong>권장: Option A (MVP) 먼저 시작</strong><br>
+    투자 회수 8개월로 가장 빠른 ROI. 실제 데이터로 AI 정확도를 검증한 뒤 Phase 2 투자 근거를 확보합니다.
+    Phase 1 결과를 보고 다음 단계 진행 여부를 판단합니다.
+  </div>
 
-  <div class="impact-grid">
-    <div class="impact-card">
-      <div class="label">반복 업무</div>
-      <div class="value">90<span class="unit">%</span></div>
-      <div class="unit">시간 절감</div>
-    </div>
-    <div class="impact-card">
-      <div class="label">입력 오류</div>
-      <div class="value">90<span class="unit">%</span></div>
-      <div class="unit">감소</div>
-    </div>
-    <div class="impact-card">
-      <div class="label">보고서</div>
-      <div class="value">100<span class="unit">%</span></div>
-      <div class="unit">자동 생성</div>
-    </div>
-    <div class="impact-card">
-      <div class="label">온보딩</div>
-      <div class="value">79<span class="unit">%</span></div>
-      <div class="unit">기간 단축</div>
-    </div>
-    <div class="impact-card">
-      <div class="label">의사결정</div>
-      <div class="value">즉시</div>
-      <div class="unit">실시간 데이터</div>
-    </div>
+  <div class="note-box">
+    <strong>수치 기준 안내:</strong> 본 제안서의 시간 절감·비용 수치는 유사 규모 이카운트 사용 기업 사례 기반 <strong>추정치</strong>입니다.
+    킥오프 시 CNC코리아의 실제 업무 로그를 측정하여 보정합니다.
   </div>
 </section>
 
-<!-- ═══════════════ 2. Phase 1 ═══════════════ -->
+<!-- ═══════ 2. Phase 1 ═══════ -->
 <section>
   <div class="section-num">2</div>
   <h2>Phase 1 — 크롬 확장 프로그램</h2>
-  <p class="section-sub">기존 업무 흐름 변경 없이, 이카운트 ERP 화면에서 바로 자동화 적용 | 4주</p>
+  <p class="section-sub">기존 이카운트 사용 흐름 변경 없이 즉시 자동화 | 6주 (버퍼 포함)</p>
 
+  <h3>자동화 안전 원칙</h3>
   <div class="phase-card highlight">
-    <span class="phase-badge">즉시 도입 가능</span>
-    <p>이카운트 ERP를 열면 사이드 패널에서 파일 업로드 → 미리보기 → 실행 3단계로 자동화가 완료됩니다. 별도 시스템 학습이 필요 없습니다.</p>
+    <span class="phase-badge">핵심 원칙</span>
+    <p style="font-size:18px;font-weight:700;margin-bottom:8px;">AI는 제안하고, 사람이 승인한다</p>
+    <table>
+      <thead><tr><th>업무 위험도</th><th>자동화 수준</th><th>예시</th></tr></thead>
+      <tbody>
+        <tr><td><strong style="color:var(--danger)">높음</strong> (금전/인사)</td><td>AI 초안 → <strong>반드시 수동 승인</strong></td><td>급여 이체, 판매전표 등록</td></tr>
+        <tr><td><strong style="color:var(--accent)">중간</strong> (데이터 입력)</td><td>AI 변환 → <strong>미리보기 확인 후 실행</strong></td><td>엑셀 업로드, OCR 결과</td></tr>
+        <tr><td><strong style="color:var(--success)">낮음</strong> (조회/알림)</td><td>자동 실행 → <strong>결과 알림</strong></td><td>채권 갱신, 견적 알림</td></tr>
+      </tbody>
+    </table>
   </div>
 
-  <h3>주문 · 물류 자동화</h3>
+  <h3>핵심 기능 + 검수 방식</h3>
+  <h4>주문·물류</h4>
   <table>
-    <thead><tr><th>기능</th><th>설명</th><th>절감</th></tr></thead>
+    <thead><tr><th>기능</th><th>설명</th><th>절감</th><th>검수</th></tr></thead>
     <tbody>
-      <tr><td><strong>카톡 주문 수집·입력</strong></td><td>카카오톡 주문 → AI 파싱 → 이카운트 판매입력 자동 변환</td><td class="saving">30분→2분</td></tr>
-      <tr><td><strong>엑셀 판매입력 업로드</strong></td><td>엑셀 파일 → 자동 판매입력 일괄 등록</td><td class="saving">45분→3분</td></tr>
-      <tr><td><strong>물류센터 양식 변환</strong></td><td>이카운트 데이터 → 물류센터별 포맷 변환 → 메일 발송</td><td class="saving">20분→1분</td></tr>
+      <tr><td><strong>카톡 주문 수집</strong></td><td>카톡 → AI 파싱 → 판매입력</td><td class="saving">30분→2분</td><td>미리보기 확인 후 승인</td></tr>
+      <tr><td><strong>엑셀 업로드</strong></td><td>엑셀 → 일괄 등록</td><td class="saving">45분→3분</td><td>건별 체크 → 실행</td></tr>
+      <tr><td><strong>물류센터 변환</strong></td><td>이카운트 → 센터 포맷 → 메일</td><td class="saving">20분→1분</td><td>메일 발송 전 확인</td></tr>
     </tbody>
   </table>
 
-  <h3>견적 · 영업 자동화</h3>
+  <h4>견적·영업</h4>
   <table>
-    <thead><tr><th>기능</th><th>설명</th><th>절감</th></tr></thead>
+    <thead><tr><th>기능</th><th>설명</th><th>절감</th><th>검수</th></tr></thead>
     <tbody>
-      <tr><td><strong>거래처별 단가 추천</strong></td><td>과거 단가 패턴 학습 → AI 추천</td><td class="saving">신규 기능</td></tr>
-      <tr><td><strong>자동 견적서 생성</strong></td><td>견적서 자동 제작 + 이메일 전송</td><td class="saving">20분→3분</td></tr>
-      <tr><td><strong>미전환 견적 알림</strong></td><td>7/14일 무응답 견적 자동 follow-up</td><td class="saving">신규 기능</td></tr>
-      <tr><td><strong>가견적 (박스 추천)</strong></td><td>치수 입력 → 최적 박스 + 견적 자동 생성</td><td class="saving">신규 기능</td></tr>
+      <tr><td><strong>단가 추천</strong></td><td>과거 패턴 → AI 추천</td><td class="saving">신규</td><td>추천값 표시 → 사용자 선택</td></tr>
+      <tr><td><strong>자동 견적서</strong></td><td>견적서 제작 + 이메일</td><td class="saving">20분→3분</td><td>미리보기 → 승인 후 발송</td></tr>
+      <tr><td><strong>미전환 알림</strong></td><td>7/14일 무응답 follow-up</td><td class="saving">신규</td><td>목록 확인 → 선택 발송</td></tr>
+      <tr><td><strong>가견적</strong></td><td>치수 → 박스 추천 + 견적</td><td class="saving">신규</td><td>결과 검토 → 수정 가능</td></tr>
     </tbody>
   </table>
 
-  <h3>결제 · 매입 · 재무 · 인사</h3>
+  <h4>결제·매입·재무·인사</h4>
   <table>
-    <thead><tr><th>기능</th><th>설명</th><th>절감</th></tr></thead>
+    <thead><tr><th>기능</th><th>설명</th><th>절감</th><th>검수</th></tr></thead>
     <tbody>
-      <tr><td><strong>세금계산서 매칭</strong></td><td>네이버페이/이니시스 ↔ 이카운트 자동 비교</td><td class="saving">40분→5분</td></tr>
-      <tr><td><strong>인보이스 OCR</strong></td><td>PDF → AI OCR → 구매입력 자동 변환</td><td class="saving">15분→2분</td></tr>
-      <tr><td><strong>채권현황 자동 갱신</strong></td><td>매일 자동 (기존 매주 수작업)</td><td class="saving">1시간→자동</td></tr>
-      <tr><td><strong>급여 원클릭</strong></td><td>급여대장 → 이체서 + 명세서 + 메일</td><td class="saving">2시간→5분</td></tr>
-      <tr><td><strong>영수증 OCR</strong></td><td>법인카드 영수증 → AI 분류 → 비용 리스트</td><td class="saving">신규 기능</td></tr>
+      <tr><td><strong>세금계산서 매칭</strong></td><td>PG ↔ 이카운트 비교</td><td class="saving">40분→5분</td><td>불일치 건만 수동 확인</td></tr>
+      <tr><td><strong>인보이스 OCR</strong></td><td>PDF → AI OCR → 구매입력</td><td class="saving">15분→2분</td><td>OCR 결과 편집 → 확인 후 등록</td></tr>
+      <tr><td><strong>채권 갱신</strong></td><td>매일 자동</td><td class="saving">1시간→자동</td><td>로그 + 이상치 알림</td></tr>
+      <tr><td><strong>급여 원클릭</strong></td><td>급여대장 → 이체서+명세서</td><td class="saving">2시간→5분</td><td><strong style="color:var(--danger)">관리자 최종 승인 필수</strong></td></tr>
+      <tr><td><strong>영수증 OCR</strong></td><td>영수증 → AI 분류</td><td class="saving">신규</td><td>분류 수정 → 확인 후 저장</td></tr>
+    </tbody>
+  </table>
+
+  <h3>데이터 플로우 (보안 구조)</h3>
+  <table>
+    <thead><tr><th>전송 대상</th><th>전송 데이터</th><th>목적</th><th>비고</th></tr></thead>
+    <tbody>
+      <tr><td>이카운트 API</td><td>판매/구매/재고 전표</td><td>ERP CRUD</td><td>이카운트 공식 API</td></tr>
+      <tr><td>Claude API</td><td>OCR 대상 문서 (PDF/이미지)</td><td>AI 파싱</td><td>Anthropic: 학습 미사용</td></tr>
+      <tr><td><strong>전송 안 함</strong></td><td>급여 상세, API 키, 비밀번호</td><td>—</td><td>로컬 처리만</td></tr>
+    </tbody>
+  </table>
+
+  <div class="note-box">
+    <strong>Phase 1은 자체 백엔드 서버 없이</strong> 브라우저에서 이카운트/Claude API를 직접 호출합니다.
+    단, OCR/파싱 시 문서 데이터가 Claude API(Anthropic 서버)로 전송됩니다.
+    Phase 2부터 자체 백엔드 서버를 사용합니다.
+  </div>
+
+  <h3>AI 문서 처리 품질 관리</h3>
+  <table>
+    <thead><tr><th>항목</th><th>기준</th></tr></thead>
+    <tbody>
+      <tr><td>OCR 정확도 목표</td><td><strong>95% 이상</strong> (필드 단위)</td></tr>
+      <tr><td>사전 검증</td><td>고객 샘플 문서 30건으로 테스트</td></tr>
+      <tr><td>사람 확인 UX</td><td>OCR 결과 편집 가능 테이블, 수정 후 등록</td></tr>
+      <tr><td>인식 불가 시</td><td>빈칸 + 빨간색 표시 → 수동 입력 유도</td></tr>
+      <tr><td>파싱 실패 시</td><td>"수동 입력 모드" 전환, 원본 표시</td></tr>
+    </tbody>
+  </table>
+
+  <h3>변화관리 및 배포</h3>
+  <table>
+    <thead><tr><th>항목</th><th>계획</th></tr></thead>
+    <tbody>
+      <tr><td><strong>배포</strong></td><td>Chrome Web Store 비공개 또는 개발자 모드</td></tr>
+      <tr><td><strong>교육</strong></td><td>1시간 온라인 (녹화 제공) + 인라인 가이드</td></tr>
+      <tr><td><strong>교육 대상</strong></td><td>1차: 관리자+영업 / 2차: 물류·회계</td></tr>
+      <tr><td><strong>운영 문의</strong></td><td>카카오톡 또는 이메일 (영업일 4시간 내 응답)</td></tr>
     </tbody>
   </table>
 </section>
 
-<!-- ═══════════════ 3. Phase 2 ═══════════════ -->
+<!-- ═══════ 3. Phase 2 ═══════ -->
 <section>
   <div class="section-num">3</div>
-  <h2>Phase 2 — AI 통합 대시보드 플랫폼</h2>
-  <p class="section-sub">이카운트 데이터를 실시간 수집·분석하는 독립 웹 플랫폼 | 8주</p>
+  <h2>Phase 2 — AI 통합 대시보드</h2>
+  <p class="section-sub">이카운트 데이터 실시간 분석 + 자동 보고서 | 8주</p>
 
-  <h3>실시간 대시보드</h3>
-  <p>KPI 카드(오늘 매출, 주문 수, 미수금, 재고 경고) + 매출 추이 차트 + 채널별 매출 비중 + 거래처 활동성 등급을 한 화면에서 확인합니다.</p>
-
-  <h3>거래처 통계 · 분석</h3>
+  <h3>거래처 통계·분석</h3>
   <table>
     <thead><tr><th>기능</th><th>설명</th></tr></thead>
     <tbody>
-      <tr><td><strong>주문 이력 대시보드</strong></td><td>거래처별 주문 이력/추이 한눈에 파악</td></tr>
-      <tr><td><strong>매출 순위 (파레토)</strong></td><td>상위 20% 거래처의 매출 기여도 분석</td></tr>
-      <tr><td><strong>활동성 등급</strong></td><td>AI 기반 거래처 분류 (활성→주의→휴면→이탈)</td></tr>
-      <tr><td><strong>이탈 예측</strong></td><td>주문 패턴 이상 감지 → 선제 대응 알림</td></tr>
-      <tr><td><strong>결제 패턴</strong></td><td>평균 결제일, 연체 경향 분석</td></tr>
-      <tr><td><strong>신규 vs 기존 비율</strong></td><td>신규 거래처 유입률 추이 모니터링</td></tr>
+      <tr><td><strong>주문 이력</strong></td><td>거래처별 주문 이력/추이</td></tr>
+      <tr><td><strong>매출 순위 (파레토)</strong></td><td>상위 20% 거래처 매출 기여도</td></tr>
+      <tr><td><strong>활동성 등급</strong></td><td>AI 분류: 활성→주의→휴면→이탈</td></tr>
+      <tr><td><strong>이탈 예측</strong></td><td>주문 패턴 이상 → 선제 알림</td></tr>
+      <tr><td><strong>결제 패턴</strong></td><td>평균 결제일, 연체 경향</td></tr>
+      <tr><td><strong>신규 vs 기존</strong></td><td>유입률 추이 모니터링</td></tr>
     </tbody>
   </table>
 
-  <h3>매출 · 품목 분석</h3>
-  <table>
-    <thead><tr><th>기능</th><th>설명</th></tr></thead>
-    <tbody>
-      <tr><td><strong>기간별 매출 비교</strong></td><td>일/주/월/연 매출 전기 대비 증감률 자동 산출</td></tr>
-      <tr><td><strong>채널별 매출 비중</strong></td><td>스마트스토어 / 자사몰 / 카톡B2B 채널 분석</td></tr>
-      <tr><td><strong>품목별 순위</strong></td><td>기여도/마진 분리 분석</td></tr>
-      <tr><td><strong>시간대별 패턴</strong></td><td>주문 피크 시간 파악 → 인력 배치 최적화</td></tr>
-      <tr><td><strong>목표 달성률</strong></td><td>월별 목표 대비 실적 자동 트래킹</td></tr>
-      <tr><td><strong>시즌성 분석</strong></td><td>계절별 매출 패턴 → 재고 사전 확보</td></tr>
-    </tbody>
-  </table>
+  <h3>매출·품목 분석 + 자동 보고서</h3>
+  <p>일/주/월/연 매출 비교, 채널별 비중, 품목 순위, 시간대별 패턴, 목표 달성률, 시즌성 분석을 대시보드로 제공합니다.</p>
 
-  <h3>자동 보고서</h3>
   <table>
-    <thead><tr><th>보고서</th><th>주기</th><th>내용</th></tr></thead>
+    <thead><tr><th>보고서</th><th>주기</th><th>검수</th></tr></thead>
     <tbody>
-      <tr><td><strong>일간 매출 요약</strong></td><td>매일 18시</td><td>매출/주문/입금/특이사항</td></tr>
-      <tr><td><strong>주간 채권 현황</strong></td><td>매주 목요일</td><td>미수금 aging, 연체 거래처, 독촉 대상</td></tr>
-      <tr><td><strong>월간 손익 보고서</strong></td><td>매월 1일</td><td>매출/매입/마진/전월 대비</td></tr>
-      <tr><td><strong>거래처 랭킹</strong></td><td>월간</td><td>매출 TOP20, 신규, 이탈 위험</td></tr>
+      <tr><td>일간 매출 요약</td><td>매일 18시</td><td>자동 발송 (알림)</td></tr>
+      <tr><td>주간 채권 현황</td><td>매주 목요일</td><td>자동 발송 (알림)</td></tr>
+      <tr><td>월간 손익 보고서</td><td>매월 1일</td><td><strong>초안 → 관리자 확인 후 배포</strong></td></tr>
+      <tr><td>거래처 랭킹</td><td>월간</td><td>자동 발송 (알림)</td></tr>
     </tbody>
   </table>
-  <p>→ 이메일 자동 발송 + PDF 다운로드 + 대시보드 표시</p>
 </section>
 
-<!-- ═══════════════ 4. Phase 3 ═══════════════ -->
+<!-- ═══════ 4. Phase 3 ═══════ -->
 <section>
   <div class="section-num">4</div>
   <h2>Phase 3 — 사내 AI 챗봇</h2>
-  <p class="section-sub">CNC코리아의 모든 사내 정보를 학습한 AI 지식 비서 | 8주</p>
+  <p class="section-sub">모든 업무를 챗봇으로 처리하는 것이 아니라, 용도에 맞는 도구를 구분합니다 | 8주</p>
 
-  <p>직원 누구나 자연어로 질문하면 즉시 답변을 받을 수 있는 <strong>사내 지식 플랫폼</strong>입니다.</p>
+  <h3>AI vs 규칙 기반 구분</h3>
+  <table>
+    <thead><tr><th>영역</th><th>적합한 도구</th><th>이유</th></tr></thead>
+    <tbody>
+      <tr><td>재고 수량 조회</td><td><strong>대시보드 (Phase 2)</strong></td><td>검색/필터가 더 빠름</td></tr>
+      <tr><td>복합 질의 (주문+미수금+계약)</td><td><strong>AI 챗봇</strong></td><td>여러 소스 결합 자연어 필요</td></tr>
+      <tr><td>업무 매뉴얼</td><td><strong>AI 챗봇</strong></td><td>문서 맥락 이해 + 요약</td></tr>
+      <tr><td>단가 추천</td><td><strong>AI 챗봇</strong></td><td>패턴 분석 + 추천</td></tr>
+      <tr><td>담당자 연락처</td><td><strong>검색 포털</strong></td><td>단순 DB 검색이 정확</td></tr>
+      <tr><td style="color:var(--danger)"><strong>급여 조회</strong></td><td style="color:var(--danger)"><strong>접근 차단</strong></td><td>고위험 — 개인정보보호법</td></tr>
+    </tbody>
+  </table>
 
-  <h3>학습 데이터 범위</h3>
-  <div class="kb-tree">
-    <div class="category">ERP 데이터 (이카운트 실시간 연동)</div>
-    <div class="item">재고 현황 <span class="example">— "A0001 박스 재고 몇 개야?"</span></div>
-    <div class="item">거래처 정보 <span class="example">— "홍길동 상사 최근 주문 내역?"</span></div>
-    <div class="item">매출/매입 <span class="example">— "이번 달 매출 얼마야?"</span></div>
-    <div class="item">채권 현황 <span class="example">— "연체 중인 거래처 리스트?"</span></div>
-    <br>
-    <div class="category">업무 매뉴얼</div>
-    <div class="item">이카운트 사용법 <span class="example">— "판매전표 수정하는 방법?"</span></div>
-    <div class="item">물류 프로세스 <span class="example">— "CJ대한통운 발송 절차?"</span></div>
-    <div class="item">신규 직원 온보딩 <span class="example">— "첫 주에 뭘 해야 해?"</span></div>
-    <br>
-    <div class="category">계약서 · 문서</div>
-    <div class="item">거래처 계약서 <span class="example">— "A사 계약 조건 확인"</span></div>
-    <div class="item">단가 계약 <span class="example">— "B사 올해 단가?"</span></div>
-    <div class="item">내부 규정 <span class="example">— "출장비 정산 기준?"</span></div>
-    <br>
-    <div class="category">업체 관리</div>
-    <div class="item">거래처 DB <span class="example">— "A사 담당자 연락처?"</span></div>
-    <div class="item">공급업체 <span class="example">— "원지 공급업체 리스트?"</span></div>
-    <div class="item">물류업체 <span class="example">— "제주도 배송 가능 업체?"</span></div>
-    <br>
-    <div class="category">업무 노하우 (축적형)</div>
-    <div class="item">자주 묻는 질문 <span class="example">— 반복 질의 자동 학습</span></div>
-    <div class="item">문제 해결 사례 <span class="example">— "지난번 클레임 어떻게 처리했지?"</span></div>
-  </div>
+  <h3>데이터 접근 등급</h3>
+  <table>
+    <thead><tr><th>등급</th><th>데이터</th><th>AI 접근</th></tr></thead>
+    <tbody>
+      <tr><td>Level 1 (공개)</td><td>제품 정보, 매뉴얼</td><td>전체 접근</td></tr>
+      <tr><td>Level 2 (내부)</td><td>매출/재고/거래처</td><td>로그인 사용자만</td></tr>
+      <tr><td>Level 3 (기밀)</td><td>계약서, 단가표</td><td>관리자 권한 + 열람 로그</td></tr>
+      <tr><td style="color:var(--danger)">Level 4 (민감)</td><td>급여, 인사 정보</td><td><strong style="color:var(--danger)">접근 차단</strong></td></tr>
+    </tbody>
+  </table>
 
   <h3>활용 시나리오</h3>
-
   <div class="scenario">
-    <div class="scenario-title">시나리오 1: 영업 담당자</div>
-    <div class="chat-line"><span class="speaker user">직원:</span> <span class="text">"홍길동 상사 최근 3개월 주문 내역 보여줘"</span></div>
+    <div class="scenario-title">영업 담당자</div>
+    <div class="chat-line"><span class="speaker user">직원:</span> <span class="text">"홍길동 상사 최근 3개월 주문 + 미수금 알려줘"</span></div>
     <div class="chat-line"><span class="speaker ai">AI:</span> <span class="text">홍길동 상사 (C001)
-- 4월: A형 500개, B형 200개 (1,200만원)
-- 3월: A형 300개 (600만원)
-- 2월: A형 400개, C형 100개 (950만원)
+4월: A형 500개, B형 200개 (1,200만원)
+3월: A형 300개 (600만원) | 2월: A형 400개 (950만원)
 ※ 전분기 대비 25% 증가 | 미수금 230만원 (결제예정 4/30)</span></div>
   </div>
-
   <div class="scenario">
-    <div class="scenario-title">시나리오 2: 물류 담당자</div>
-    <div class="chat-line"><span class="speaker user">직원:</span> <span class="text">"오늘 출고할 주문 리스트"</span></div>
-    <div class="chat-line"><span class="speaker ai">AI:</span> <span class="text">오늘 출고 예정 8건:
-1. 홍길동 상사 — A형 500개 (CJ대한통운)
-2. 김영수 — B형 50개 (한진택배)
-※ A형 재고: 2,300개 (출고 후 1,800개)
-※ 재고 부족 예상일: 5/15</span></div>
-  </div>
-
-  <div class="scenario">
-    <div class="scenario-title">시나리오 3: 경영진</div>
+    <div class="scenario-title">경영진</div>
     <div class="chat-line"><span class="speaker user">대표:</span> <span class="text">"이번 주 매출 요약"</span></div>
     <div class="chat-line"><span class="speaker ai">AI:</span> <span class="text">금주 매출: 4,850만원 (전주 대비 +12%)
 주문 47건 | 스마트스토어 45% / 카톡B2B 35% / 자사몰 20%
-톱3: A형(35%), B형(28%), C형(15%)
 연간 목표 달성률: 35% (현 추세 시 12.8억 예상)</span></div>
   </div>
-
-  <h3>기술 핵심</h3>
-  <table>
-    <thead><tr><th>기술</th><th>역할</th></tr></thead>
-    <tbody>
-      <tr><td><strong>RAG</strong></td><td>사내 문서 벡터화 → 질문 관련 문서 검색 → 정확한 답변 생성</td></tr>
-      <tr><td><strong>Tool Use</strong></td><td>AI가 이카운트 API를 직접 호출하여 실시간 데이터 조회</td></tr>
-      <tr><td><strong>MCP 서버</strong></td><td>Claude Desktop/웹에서 이카운트 도구를 자연어로 사용</td></tr>
-    </tbody>
-  </table>
 </section>
 
-<!-- ═══════════════ 5. Phase 4 ═══════════════ -->
+<!-- ═══════ 5. Phase 4 ═══════ -->
 <section>
   <div class="section-num">5</div>
   <h2>Phase 4 — 물류센터 확장</h2>
-  <p class="section-sub">주문 → 생산 → 출고 → 배송 → 정산 End-to-End 자동화 | 12주</p>
+  <p class="section-sub">주문 → 출고 → 배송 → 정산 End-to-End | 12주</p>
 
-  <h3>입고 관리</h3>
   <table>
-    <thead><tr><th>기능</th><th>설명</th></tr></thead>
+    <thead><tr><th>영역</th><th>기능</th><th>검수</th></tr></thead>
     <tbody>
-      <tr><td><strong>바코드/QR 스캔</strong></td><td>입고 수량 자동 입력 → 이카운트 재고 반영</td></tr>
-      <tr><td><strong>AI 이미지 검수</strong></td><td>불량/파손 자동 감지</td></tr>
-      <tr><td><strong>납품 품질 분석</strong></td><td>공급업체별 입고 이력 → 품질 트렌드</td></tr>
+      <tr><td rowspan="2"><strong>입고</strong></td><td>바코드/QR 스캔 → 수량 자동 입력</td><td>스캔 결과 확인</td></tr>
+      <tr><td>AI 이미지 검수 → 불량 감지</td><td>감지 결과 수동 확인</td></tr>
+      <tr><td rowspan="3"><strong>재고</strong></td><td>로케이션 관리 (창고 내 위치)</td><td>—</td></tr>
+      <tr><td>AI 안전재고 예측 → 자동 발주점</td><td>예측값 검토 → 승인</td></tr>
+      <tr><td>ABC 분석 (회전율 기반 등급)</td><td>자동</td></tr>
+      <tr><td rowspan="3"><strong>출고·배송</strong></td><td>AI 피킹 리스트 (동선 최적화)</td><td>리스트 확인 후 실행</td></tr>
+      <tr><td>택배사 API 자동 연동</td><td>자동 (로그 기록)</td></tr>
+      <tr><td>송장 동기화 (이카운트+카페24)</td><td>자동 (로그 기록)</td></tr>
     </tbody>
   </table>
-
-  <h3>재고 · 창고 관리</h3>
-  <table>
-    <thead><tr><th>기능</th><th>설명</th></tr></thead>
-    <tbody>
-      <tr><td><strong>로케이션 관리</strong></td><td>창고 내 위치 추적</td></tr>
-      <tr><td><strong>AI 안전재고 예측</strong></td><td>수요 패턴 학습 → 자동 발주점 조정</td></tr>
-      <tr><td><strong>ABC 분석</strong></td><td>품목별 회전율 기반 자동 등급화</td></tr>
-      <tr><td><strong>재고 실사</strong></td><td>태블릿 바코드 스캔 → 차이 자동 보고</td></tr>
-    </tbody>
-  </table>
-
-  <h3>출고 · 배송 관리</h3>
-  <table>
-    <thead><tr><th>기능</th><th>설명</th></tr></thead>
-    <tbody>
-      <tr><td><strong>AI 피킹 최적화</strong></td><td>동선 최적화된 피킹 리스트 자동 생성</td></tr>
-      <tr><td><strong>택배사 자동 연동</strong></td><td>CJ/한진/롯데/우체국 API 연동</td></tr>
-      <tr><td><strong>송장 자동 동기화</strong></td><td>이카운트 + 카페24 동시 업데이트</td></tr>
-      <tr><td><strong>배송 추적</strong></td><td>실시간 상태 → 완료 시 자동 정산</td></tr>
-    </tbody>
-  </table>
-
-  <h3>물류 분석 대시보드</h3>
-  <p>일일 입출고량, 창고 가동률, 피킹 효율, 배송 리드타임, 반품·클레임률을 실시간 모니터링합니다.</p>
 </section>
 
-<!-- ═══════════════ 6. 로드맵 ═══════════════ -->
+<!-- ═══════ 6. 의사결정 게이트 ═══════ -->
 <section>
   <div class="section-num">6</div>
-  <h2>단계별 도입 로드맵</h2>
-  <p class="section-sub">Phase별 독립 배포 — 리스크 최소화, 단계별 효과 확인</p>
+  <h2>Phase별 의사결정 게이트</h2>
+  <p class="section-sub">각 단계 종료 시 무엇이 검증되면 다음 단계로 넘어가는지 명시합니다</p>
 
-  <div class="roadmap">
-    <div class="roadmap-item">
-      <div class="roadmap-dot">1</div>
-      <div class="roadmap-date">2026.05</div>
-      <div class="roadmap-name">크롬 확장</div>
-      <div class="roadmap-period">4주 · 즉시 효과</div>
-    </div>
-    <div class="roadmap-item">
-      <div class="roadmap-dot">2</div>
-      <div class="roadmap-date">2026.07</div>
-      <div class="roadmap-name">AI 플랫폼</div>
-      <div class="roadmap-period">8주 · 전사 분석</div>
-    </div>
-    <div class="roadmap-item">
-      <div class="roadmap-dot">3</div>
-      <div class="roadmap-date">2026.10</div>
-      <div class="roadmap-name">AI 챗봇</div>
-      <div class="roadmap-period">8주 · 지식 통합</div>
-    </div>
-    <div class="roadmap-item">
-      <div class="roadmap-dot">4</div>
-      <div class="roadmap-date">2027.01</div>
-      <div class="roadmap-name">물류 확장</div>
-      <div class="roadmap-period">12주 · 물류 통합</div>
-    </div>
+  <div class="gate-card">
+    <div class="gate-title">Phase 1 → Phase 2 진입 조건</div>
+    <table>
+      <thead><tr><th>기준</th><th>목표</th><th>측정</th></tr></thead>
+      <tbody>
+        <tr><td>워크플로우 가동률</td><td>주 5일 이상 사용</td><td>사용 로그</td></tr>
+        <tr><td>시간 절감</td><td>기준선 대비 50%↑</td><td>전후 측정 비교</td></tr>
+        <tr><td>AI 파싱 정확도</td><td>95% 이상</td><td>샘플 30건 재측정</td></tr>
+        <tr><td>사용자 만족도</td><td>5점 중 3.5 이상</td><td>설문</td></tr>
+      </tbody>
+    </table>
+    <div class="gate-stop">중단 기준: 파싱 정확도 80% 미만 또는 만족도 2.5 미만 → Phase 2 보류</div>
   </div>
 
-  <table>
-    <thead><tr><th>Phase</th><th>기간</th><th>주요 마일스톤</th></tr></thead>
-    <tbody>
-      <tr><td><strong>Phase 1</strong></td><td>4주</td><td>W1-2: 핵심 워크플로우 3개 / W3-4: 전체 13개 + 테스트</td></tr>
-      <tr><td><strong>Phase 2</strong></td><td>8주</td><td>W1-3: 백엔드+DB / W4-6: 프론트엔드 / W7-8: 보고서+테스트</td></tr>
-      <tr><td><strong>Phase 3</strong></td><td>8주</td><td>W1-3: 지식베이스 구축 / W4-6: 챗봇 엔진 / W7-8: 연동+테스트</td></tr>
-      <tr><td><strong>Phase 4</strong></td><td>12주</td><td>W1-4: WMS 설계 / W5-8: 입출고 시스템 / W9-12: 배송+최적화</td></tr>
-    </tbody>
-  </table>
+  <div class="gate-card">
+    <div class="gate-title">Phase 2 → Phase 3 진입 조건</div>
+    <table>
+      <thead><tr><th>기준</th><th>목표</th><th>측정</th></tr></thead>
+      <tbody>
+        <tr><td>대시보드 접속률</td><td>담당자 80% 이상</td><td>접속 로그</td></tr>
+        <tr><td>보고서 활용도</td><td>월 3회 이상 열람</td><td>다운로드 로그</td></tr>
+        <tr><td>사내 문서 디지털화</td><td>매뉴얼 20건 이상</td><td>문서 카운트</td></tr>
+      </tbody>
+    </table>
+    <div class="gate-stop">중단 기준: 접속률 30% 미만 → 사용자 필요 재분석, Phase 3 보류</div>
+  </div>
+
+  <div class="gate-card">
+    <div class="gate-title">Phase 3 → Phase 4 진입 조건</div>
+    <table>
+      <thead><tr><th>기준</th><th>목표</th><th>측정</th></tr></thead>
+      <tbody>
+        <tr><td>챗봇 일간 질의</td><td>10건 이상</td><td>대화 로그</td></tr>
+        <tr><td>답변 정확도</td><td>90% 이상</td><td>피드백</td></tr>
+        <tr><td>물류 규모</td><td>일 출고 50건 이상</td><td>현장 데이터</td></tr>
+      </tbody>
+    </table>
+    <div class="gate-stop">중단 기준: 일 출고 20건 미만 → Phase 4 불필요, 현행 유지</div>
+  </div>
 </section>
 
-<!-- ═══════════════ 7. 비용 ═══════════════ -->
+<!-- ═══════ 7. ROI ═══════ -->
 <section>
   <div class="section-num">7</div>
   <h2>투자 비용 및 ROI</h2>
-  <p class="section-sub">Phase별 독립 투자 — 효과 확인 후 다음 단계 진행</p>
+  <p class="section-sub">Phase별 독립 계산 — 산식 공개</p>
 
-  <h3>투자 비용 (추정)</h3>
+  <h3>Phase 1 단독 ROI (Option A)</h3>
   <table>
-    <thead><tr><th>구분</th><th>Phase 1</th><th>Phase 2</th><th>Phase 3</th><th>Phase 4</th></tr></thead>
+    <thead><tr><th>항목</th><th>금액</th><th>산식</th></tr></thead>
     <tbody>
-      <tr><td><strong>개발비</strong></td><td>800만원</td><td>2,000만원</td><td>2,500만원</td><td>3,500만원</td></tr>
-      <tr><td><strong>인프라 (월)</strong></td><td>0원</td><td>30만원</td><td>50만원</td><td>80만원</td></tr>
-      <tr><td><strong>AI API (월)</strong></td><td>5만원</td><td>15만원</td><td>30만원</td><td>40만원</td></tr>
-    </tbody>
-  </table>
-
-  <h3>월간 절감 효과</h3>
-  <table>
-    <thead><tr><th>항목</th><th>절감 시간</th><th>환산 비용</th></tr></thead>
-    <tbody>
-      <tr><td>반복 업무 자동화</td><td>72시간/월</td><td class="saving">180만원</td></tr>
-      <tr><td>보고서 자동화</td><td>20시간/월</td><td class="saving">50만원</td></tr>
-      <tr><td>데이터 입력 오류 감소</td><td>10시간/월</td><td class="saving">25만원</td></tr>
-      <tr><td>AI 챗봇 (문의 대응)</td><td>15시간/월</td><td class="saving">37.5만원</td></tr>
-      <tr><td>물류 효율화</td><td>30시간/월</td><td class="saving">75만원</td></tr>
-      <tr><td><strong>합계</strong></td><td><strong>147시간/월</strong></td><td class="saving"><strong>367.5만원/월</strong></td></tr>
+      <tr><td>초기 투자</td><td>800만원</td><td>—</td></tr>
+      <tr><td>월 운영비</td><td>5만원</td><td>AI API</td></tr>
+      <tr><td>월 절감 (추정)</td><td>110만원</td><td>47시간 × 2.35만원/시간</td></tr>
+      <tr><td>순 월간 효과</td><td><strong>105만원</strong></td><td>110 - 5</td></tr>
     </tbody>
   </table>
 
   <div class="cost-highlight">
-    <div class="label">투자 회수 기간</div>
-    <div class="value">약 18개월</div>
-    <div class="sub">3년 누적 순이익: +3,430만원 (정량화 어려운 효과 미포함)</div>
+    <div class="label">Phase 1 투자 회수 기간</div>
+    <div class="value">약 8개월</div>
+    <div class="sub">800만원 / 105만원 = 7.6개월 | 1년 누적 효과: +460만원</div>
   </div>
+
+  <div class="note-box">
+    <strong>산식 근거:</strong> 시급 2.35만원 = 연봉 4,500만원 기준 추정.
+    실제 CNC코리아 인건비·업무 빈도로 킥오프 시 보정합니다.
+  </div>
+
+  <h3>Phase 1+2 누적 ROI (Option B)</h3>
+  <table>
+    <thead><tr><th>항목</th><th>금액</th><th>산식</th></tr></thead>
+    <tbody>
+      <tr><td>누적 투자</td><td>2,800만원</td><td>800 + 2,000</td></tr>
+      <tr><td>월 운영비</td><td>50만원</td><td>5 + 45</td></tr>
+      <tr><td>월 절감 (추정)</td><td>150만원</td><td>Phase 1(110) + Phase 2(40)</td></tr>
+      <tr><td>순 월간 효과</td><td><strong>100만원</strong></td><td>150 - 50</td></tr>
+      <tr><td><strong>투자 회수</strong></td><td><strong>약 28개월</strong></td><td>2,800 / 100</td></tr>
+    </tbody>
+  </table>
+
+  <p>Phase 2의 가치는 시간 절감보다 <strong>의사결정 품질 향상, 거래처 이탈 방지, 매출 기회 발견</strong> 등 정성적 효과가 큽니다. Phase 3·4는 전략적 투자로, Phase 1~2 결과 확인 후 재평가합니다.</p>
 </section>
 
-<!-- ═══════════════ 8. 보안 ═══════════════ -->
+<!-- ═══════ 8. 대안 비교 ═══════ -->
 <section>
   <div class="section-num">8</div>
-  <h2>보안 및 데이터 관리</h2>
-  <p class="section-sub">엔터프라이즈급 보안 체계 적용</p>
+  <h2>대안 비교</h2>
+  <p class="section-sub">고객이 실제로 비교할 선택지와의 차이</p>
+
+  <table>
+    <thead><tr><th>구분</th><th>본 제안 (AI)</th><th>RPA (UiPath 등)</th><th>BI (Tableau 등)</th><th>이카운트 기본</th></tr></thead>
+    <tbody>
+      <tr><td><strong>초기 비용</strong></td><td class="saving">800만원~</td><td>2,000만원~</td><td>1,500만원~</td><td>0원</td></tr>
+      <tr><td><strong>월 운영비</strong></td><td class="saving">5만원~</td><td>50만원~ (라이선스)</td><td>30만원~ (라이선스)</td><td>0원</td></tr>
+      <tr><td><strong>구축 기간</strong></td><td class="saving">4~6주</td><td>8~12주</td><td>6~8주</td><td>—</td></tr>
+      <tr><td><strong>비정형 문서</strong></td><td class="saving">강점 (LLM)</td><td>약점</td><td>불가</td><td>불가</td></tr>
+      <tr><td><strong>이카운트 연동</strong></td><td>Open API 직접</td><td>화면 조작 (불안정)</td><td>API 또는 DB</td><td>네이티브</td></tr>
+      <tr><td><strong>확장성</strong></td><td>챗봇/물류 확장</td><td>시나리오 추가</td><td>대시보드 추가</td><td>제한적</td></tr>
+    </tbody>
+  </table>
+
+  <p><strong>핵심 차별점:</strong> 카톡 주문, PDF 인보이스, 영수증 등 <strong>비정형 문서 처리</strong>는 RPA/BI로 불가능하며, 이카운트 Open API 직접 연동은 화면 조작 RPA보다 안정적입니다.</p>
+</section>
+
+<!-- ═══════ 9. 수용 테스트 ═══════ -->
+<section>
+  <div class="section-num">9</div>
+  <h2>수용 테스트 기준 (UAT)</h2>
+  <p class="section-sub">검수 기준을 사전에 합의하여 분쟁을 예방합니다</p>
+
+  <table>
+    <thead><tr><th>워크플로우</th><th>샘플</th><th>성공 기준</th><th>오류 허용</th></tr></thead>
+    <tbody>
+      <tr><td>엑셀 판매입력</td><td>실제 20건</td><td>100% 파싱 + 미리보기 정상</td><td>0건</td></tr>
+      <tr><td>카톡 주문 파싱</td><td>실제 20건</td><td>90% 이상 정확</td><td>2건 이하 수동 수정</td></tr>
+      <tr><td>인보이스 OCR</td><td>실제 10건</td><td>95% 필드 정확도</td><td>금액/날짜 100%</td></tr>
+      <tr><td>급여 자동화</td><td>테스트 3건</td><td>금액 100% 일치</td><td style="color:var(--danger)"><strong>0건 (무관용)</strong></td></tr>
+      <tr><td>세금계산서 매칭</td><td>실제 10건</td><td>95% 매칭 정확도</td><td>1건 이하</td></tr>
+    </tbody>
+  </table>
+
+  <h3>계약 구조 (안)</h3>
+  <table>
+    <thead><tr><th>시점</th><th>비율</th><th>조건</th></tr></thead>
+    <tbody>
+      <tr><td>계약 시</td><td>30%</td><td>착수금</td></tr>
+      <tr><td>중간 데모 통과</td><td>30%</td><td>핵심 3개 워크플로우 시연</td></tr>
+      <tr><td>UAT 통과</td><td>30%</td><td>전체 검수 기준 충족</td></tr>
+      <tr><td>안정화 1개월 후</td><td>10%</td><td>운영 안정 확인</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ═══════ 10. 보안 ═══════ -->
+<section>
+  <div class="section-num">10</div>
+  <h2>보안 · 컴플라이언스</h2>
+  <p class="section-sub">데이터 분류 + 외부 전송 범위 + 접근·삭제 정책</p>
+
+  <h3>데이터 분류표</h3>
+  <table>
+    <thead><tr><th>등급</th><th>데이터</th><th>외부 전송</th><th>AI 접근</th></tr></thead>
+    <tbody>
+      <tr><td>공개</td><td>제품 카탈로그, 매뉴얼</td><td>필요시</td><td>전체</td></tr>
+      <tr><td>내부</td><td>매출/재고/거래처</td><td>이카운트 API</td><td>로그인 사용자</td></tr>
+      <tr><td>기밀</td><td>계약서, 단가표</td><td>AI 분석 시 요약만</td><td>관리자 + 로그</td></tr>
+      <tr><td style="color:var(--danger)"><strong>민감</strong></td><td>급여, 인사, 개인정보</td><td><strong style="color:var(--danger)">전송 금지</strong></td><td><strong style="color:var(--danger)">접근 차단</strong></td></tr>
+    </tbody>
+  </table>
 
   <div class="security-grid">
     <div class="security-item">
-      <div class="title">API 인증</div>
-      <div class="desc">이카운트 공식 Open API 인증<br>SESSION_ID 기반, 24시간 자동 만료</div>
-    </div>
-    <div class="security-item">
-      <div class="title">데이터 전송</div>
-      <div class="desc">HTTPS (TLS 1.3)<br>모든 통신 암호화</div>
-    </div>
-    <div class="security-item">
-      <div class="title">데이터 저장</div>
-      <div class="desc">PostgreSQL<br>민감 필드 AES-256 암호화</div>
-    </div>
-    <div class="security-item">
-      <div class="title">AI API</div>
-      <div class="desc">Claude API<br>입력 데이터 학습에 사용 안 함</div>
-    </div>
-    <div class="security-item">
       <div class="title">접근 제어</div>
-      <div class="desc">역할 기반 접근 제어 (RBAC)<br>관리자/영업/물류/경영진</div>
+      <div class="desc">RBAC 역할 구분<br>관리자/영업/물류/경영진</div>
     </div>
     <div class="security-item">
-      <div class="title">감사 로그</div>
-      <div class="desc">모든 API 호출/접근 로그 기록<br>90일 보관</div>
+      <div class="title">로그·감사</div>
+      <div class="desc">모든 API 호출 기록<br>90일 보관</div>
+    </div>
+    <div class="security-item">
+      <div class="title">삭제 정책</div>
+      <div class="desc">해지 시 30일 내 전체 삭제<br>삭제 확인서 발급</div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════ 9. CTA ═══════════════ -->
+<!-- ═══════ 11. 현재 구현 상태 ═══════ -->
+<section>
+  <div class="section-num">11</div>
+  <h2>현재 구현 상태</h2>
+  <p class="section-sub">프로토타입 vs 상용 수준을 정직하게 구분합니다</p>
+
+  <table>
+    <thead><tr><th>항목</th><th>상태</th><th>설명</th></tr></thead>
+    <tbody>
+      <tr><td>Chrome Extension 구조</td><td><span class="status-proto">프로토타입</span></td><td>MV3 + Side Panel + 13개 UI 구현</td></tr>
+      <tr><td>이카운트 API 연동</td><td><span class="status-done">기본 확인</span></td><td>Zone 조회→Login 구현, API키 미확보로 전체 미테스트</td></tr>
+      <tr><td>엑셀 파싱</td><td><span class="status-proto">프로토타입</span></td><td>기본 구조, CNC코리아 실제 엑셀 미검증</td></tr>
+      <tr><td>AI OCR</td><td><span class="status-proto">코드 완료</span></td><td>Claude API 호출 구조, 실제 문서 미테스트</td></tr>
+      <tr><td>백엔드/프론트엔드</td><td><span class="status-proto">프로토타입</span></td><td>DB 모델/라우터/페이지 구조 작성</td></tr>
+      <tr><td>MCP 서버</td><td><span class="status-proto">프로토타입</span></td><td>ecount/pg/cafe24 3종 구조</td></tr>
+    </tbody>
+  </table>
+
+  <div class="note-box red">
+    <strong>검증 필요 항목:</strong> CNC코리아 실제 데이터 기반 파싱 정확도,
+    이카운트 API 전체 CRUD (인증키 발급 후), 대량(100건+) 처리 성능
+  </div>
+</section>
+
+<!-- ═══════ 12. 일정·리스크 ═══════ -->
+<section>
+  <div class="section-num">12</div>
+  <h2>일정 및 리스크</h2>
+  <p class="section-sub">2주 버퍼 포함 6주 일정 + 제외 범위 명시</p>
+
+  <div class="roadmap">
+    <div class="roadmap-item"><div class="roadmap-dot">1</div><div class="roadmap-date">2026.05</div><div class="roadmap-name">크롬 확장</div><div class="roadmap-period">6주 (버퍼 포함)</div></div>
+    <div class="roadmap-item"><div class="roadmap-dot">2</div><div class="roadmap-date">2026.07</div><div class="roadmap-name">AI 플랫폼</div><div class="roadmap-period">8주</div></div>
+    <div class="roadmap-item"><div class="roadmap-dot">3</div><div class="roadmap-date">2026.10</div><div class="roadmap-name">AI 챗봇</div><div class="roadmap-period">8주</div></div>
+    <div class="roadmap-item"><div class="roadmap-dot">4</div><div class="roadmap-date">2027.01</div><div class="roadmap-name">물류 확장</div><div class="roadmap-period">12주</div></div>
+  </div>
+
+  <h3>Phase 1 제외 범위</h3>
+  <p>이카운트 화면 커스터마이징, 모바일 앱, 다국어, 타 ERP 연동은 Phase 1 범위에 포함되지 않습니다.</p>
+
+  <h3>선행 조건</h3>
+  <p>이카운트 API 인증키 발급 + 샘플 데이터 30건 확보가 착수 전 필수입니다.</p>
+
+  <h3>리스크 관리</h3>
+  <table>
+    <thead><tr><th>리스크</th><th>대응</th></tr></thead>
+    <tbody>
+      <tr><td>이카운트 API 제약/변경</td><td>콘텐츠 스크립트 폴백 + API 모니터링</td></tr>
+      <tr><td>AI 파싱 정확도 미달</td><td>사전 30건 검증, 미달 시 범위 조정</td></tr>
+      <tr><td>사용자 저항</td><td>1:1 교육 + 챔피언 사용자 지정</td></tr>
+      <tr><td>데이터 보안 사고</td><td>데이터 분류 + 최소 전송 + 감사 로그</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ═══════ CTA ═══════ -->
 <section>
   <div class="cta-section">
     <h2>다음 단계</h2>
-    <p>Phase 1부터 바로 시작할 수 있습니다</p>
-
+    <p>Phase 1 (MVP)부터 바로 시작할 수 있습니다</p>
     <div class="cta-steps">
-      <div class="cta-step">
-        <div class="num">01</div>
-        <div class="text">이카운트 API<br>인증키 발급</div>
-      </div>
-      <div class="cta-step">
-        <div class="num">02</div>
-        <div class="text">핵심 워크플로우 3개<br>우선 구현 + 현장 테스트</div>
-      </div>
-      <div class="cta-step">
-        <div class="num">03</div>
-        <div class="text">실제 데이터로<br>파싱 정확도 검증</div>
-      </div>
-      <div class="cta-step">
-        <div class="num">04</div>
-        <div class="text">Phase 2 범위<br>KPI/차트 항목 확정</div>
-      </div>
+      <div class="cta-step"><div class="num">01</div><div class="text">이카운트 API<br>인증키 발급</div></div>
+      <div class="cta-step"><div class="num">02</div><div class="text">샘플 데이터 30건<br>수집 (엑셀/PDF/카톡)</div></div>
+      <div class="cta-step"><div class="num">03</div><div class="text">파싱 정확도<br>사전 검증 (3일)</div></div>
+      <div class="cta-step"><div class="num">04</div><div class="text">Phase 1 계약<br>검증 통과 후 착수</div></div>
     </div>
   </div>
 
   <div style="text-align:center;margin-top:40px;padding:40px 0;color:var(--gray-500);font-size:14px;">
     <strong style="color:var(--dark);font-size:16px;">킷에이아이(KiTT AI)</strong><br><br>
-    본 제안서에 대한 문의<br>
-    이메일: contact@kitt-ai.com<br>
-    <br>
-    <span style="font-size:12px;">2026.04.28 | CONFIDENTIAL</span>
+    이메일: contact@kitt-ai.com<br><br>
+    <span style="font-size:12px;">2026.04.28 | CONFIDENTIAL</span><br>
+    <span style="font-size:11px;color:var(--gray-400);">본 문서의 수치는 유사 업체 사례 기반 추정치이며, 킥오프 시 실측 데이터로 보정합니다.</span>
   </div>
 </section>
 
-</div><!-- .page -->
+</div>
 </body>
 </html>
